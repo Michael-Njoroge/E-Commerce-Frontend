@@ -26,7 +26,7 @@ const Header = () => {
       </header>
       <header className="header-upper py-3">
         <div className="container-xxl">
-          <div className="row">
+          <div className="row align-items-center">
             <div className="col-2">
               <h2>
                 <Link className="text-white">Dev Corner</Link>
