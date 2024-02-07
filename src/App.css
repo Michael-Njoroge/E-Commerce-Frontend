@@ -298,6 +298,16 @@ footer .input-group-text {
   background-color: white;
   padding: 15px;
   border-radius: 10px;
+  overflow: hidden;
+}
+
+.product-card:hover .action-bar {
+  right: 15px;
+}
+
+.wishlist-icon {
+  top: 3%;
+  right: 15px;
 }
 
 .product-card .product-details h6 {
@@ -313,6 +323,12 @@ footer .input-group-text {
 .product-card .product-details p.price {
   font-size: 16px;
   color: var(--color-1c1c1b);
+}
+
+.action-bar {
+  top: 10%;
+  right: -23px;
+  transition: 0.3s;
 }
 
 /*Product Card End */
