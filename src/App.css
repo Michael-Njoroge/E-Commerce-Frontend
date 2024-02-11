@@ -251,8 +251,6 @@ footer .input-group-text {
 }
 /*categories end*/
 
-/* Homepage Part End */
-
 /*Blog Part*/
 
 .blog-card {
@@ -362,3 +360,41 @@ footer .input-group-text {
 }
 
 /*Special Product End*/
+
+/*Famous Card*/
+
+.famous-card .famous-content {
+  top: 10%;
+  left: 5%;
+}
+
+.famous-card img {
+  border-radius: 10px;
+}
+
+.famous-content h5 {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+  margin-bottom: 7px;
+  text-transform: uppercase;
+  /*  color: white;*/
+}
+
+.famous-content h6 {
+  font-size: 24px;
+  line-height: 38px;
+  font-weight: 500;
+  /*color: white;*/
+}
+
+.famous-content p {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 100;
+  /*  color: white;*/
+}
+
+/*Famous Card End*/
+
+/* Homepage Part End */
