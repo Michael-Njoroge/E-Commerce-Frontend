@@ -13,8 +13,16 @@ const ProductCard = () => {
             </Link>
           </div>
           <div className="product-image">
-            <img src="images/watch.jpg" className="img-fluid" alt="watch" />
-            <img src="images/watch.jpg" className="img-fluid" alt="watch1" />
+            <img
+              src="images/headphone-1.avif"
+              className="img-fluid"
+              alt="watch"
+            />
+            <img
+              src="images/headphone-2.avif"
+              className="img-fluid"
+              alt="watch1"
+            />
           </div>
           <div className="product-details">
             <h6 className="brand">Havels</h6>
