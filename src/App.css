@@ -398,3 +398,29 @@ footer .input-group-text {
 /*Famous Card End*/
 
 /* Homepage Part End */
+
+/*Our Store*/
+
+.filter-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+
+.filter-title {
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-1c1c1b);
+  margin-bottom: 20px;
+}
+
+.filter-card ul {
+  list-style-type: none;
+  font-size: 13px;
+  line-height: 30px;
+  color: var(--color-777777);
+  cursor: pointer;
+}
+
+/*Our Store End*/
