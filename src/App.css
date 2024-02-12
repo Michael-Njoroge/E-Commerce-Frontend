@@ -404,7 +404,7 @@ footer .input-group-text {
 .filter-card {
   background-color: white;
   border-radius: 10px;
-  padding: 10px 15px;
+  padding: 10px 15px 25px;
 }
 
 .filter-title {
@@ -439,7 +439,21 @@ footer .input-group-text {
   font-weight: 600;
   color: var(--color-1c1c1b);
   margin-bottom: 15px;
-  margin-top: 15px;
+  margin-top: 20px;
+}
+
+.colors {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.colors li {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
 }
 
 /*Our Store End*/

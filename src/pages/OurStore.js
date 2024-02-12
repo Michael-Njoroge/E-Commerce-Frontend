@@ -52,6 +52,65 @@ const OurStore = () => {
                     </div>
                   </div>
                   <h5 className="sub-title">Price</h5>
+                  <div className="d-flex align-items-center gap-10">
+                    <div className="form-floating">
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="floatingInput"
+                        placeholder="From"
+                      />
+                      <label htmlFor="floatingInput">From</label>
+                    </div>
+                    <div className="form-floating">
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="floatingInput1"
+                        placeholder="To"
+                      />
+                      <label htmlFor="floatingInput1">To</label>
+                    </div>
+                  </div>
+                  <h5 className="sub-title">Colors</h5>
+                  <div>
+                    <ul className="colors ps-0">
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                    </ul>
+                  </div>
+                  <h5 className="sub-title">Size</h5>
+                  <div>
+                    <div className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        value=""
+                        id="color-1"
+                      />
+                      <label className="form-check-label" htmlFor="color-2">
+                        S (2)
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        value=""
+                        id="color-1"
+                      />
+                      <label className="form-check-label" htmlFor="color-2">
+                        M (2)
+                      </label>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="filter-card mb-3">
