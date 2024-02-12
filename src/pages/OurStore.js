@@ -25,6 +25,34 @@ const OurStore = () => {
               </div>
               <div className="filter-card mb-3">
                 <h3 className="filter-title">Filter By</h3>
+                <div>
+                  <h5 className="sub-title">Availability</h5>
+                  <div>
+                    <div className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        value=""
+                        id=""
+                      />
+                      <label className="form-check-label" htmlFor="">
+                        In Stock (1)
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        value=""
+                        id=""
+                      />
+                      <label className="form-check-label" htmlFor="">
+                        Out of Stock (0)
+                      </label>
+                    </div>
+                  </div>
+                  <h5 className="sub-title">Price</h5>
+                </div>
               </div>
               <div className="filter-card mb-3">
                 <h3 className="filter-title">Product Tag</h3>
