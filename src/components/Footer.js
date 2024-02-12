@@ -60,6 +60,7 @@ const Footer = () => {
                   mikethecoder12@gmail.com
                 </a>
                 <div className="social-icons d-flex align-items-center gap-30 mt-4">
+                  {/* eslint-disable jsx-a11y/anchor-is-valid */}
                   <a className="text-white" href="">
                     <BsLinkedin className="fs-4" />
                   </a>
