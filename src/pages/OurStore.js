@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import BreadCrumb from "../components/BreadCrumb";
+import ProductCard from "../components/ProductCard";
+
 import Meta from "../components/Meta";
 import ReactStars from "react-rating-stars-component";
 
 const OurStore = () => {
+  const [grid, setGrid] = useState("");
+
   return (
     <>
       <Meta title="Our Store" />
@@ -193,7 +197,7 @@ const OurStore = () => {
               </div>
             </div>
             <div className="col-9">
-              <div className="filter-sort-grid">
+              <div className="filter-sort-grid mb-4">
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="d-flex align-items-center gap-10">
                     <p className="mb-0" style={{ width: "100px" }}>
@@ -228,27 +232,44 @@ const OurStore = () => {
                     <p className="total-products mb-0">21 Products</p>
                     <div className="align-items-center d-flex gap-10 grid">
                       <img
+                        onClick={() => {
+                          setGrid(3);
+                        }}
                         src="images/gr4.svg"
                         className="d-block img-fluid"
                         alt="grid"
                       />
                       <img
+                        onClick={() => {
+                          setGrid(4);
+                        }}
                         src="images/gr3.svg"
                         className="d-block img-fluid"
                         alt="grid"
                       />
                       <img
+                        onClick={() => {
+                          setGrid(6);
+                        }}
                         src="images/gr2.svg"
                         className="d-block img-fluid"
                         alt="grid"
                       />
                       <img
+                        onClick={() => {
+                          setGrid(12);
+                        }}
                         src="images/gr.svg"
                         className="d-block img-fluid"
                         alt="grid"
                       />
                     </div>
                   </div>
+                </div>
+              </div>
+              <div className="product-list pb-5">
+                <div className="d-flex flex-wrap gap-10">
+                  <ProductCard grid={grid} />
                 </div>
               </div>
             </div>
