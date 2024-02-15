@@ -8,7 +8,7 @@ const ProductCard = (props) => {
   return (
     <>
       <div
-        className={`${location.pathname == "/store" ? `gr-${grid}` : "col-3"}`}
+        className={`${location.pathname === "/store" ? `gr-${grid}` : "col-3"}`}
       >
         <Link className="product-card position-relative">
           <div className="wishlist-icon position-absolute">
@@ -40,6 +40,10 @@ const ProductCard = (props) => {
               edit={false}
               activeColor="#ffd700"
             />
+            <p className={`description ${grid === 12 ? "d-block" : "d-none"}`}>
+              At vero eos headphones bulk pack multi colored for students vero
+              eos headphones bulk pack multi colored for students...
+            </p>
             <p className="price">$100.00</p>
           </div>
 
@@ -59,7 +63,7 @@ const ProductCard = (props) => {
         </Link>
       </div>
       <div
-        className={`${location.pathname == "/store" ? `gr-${grid}` : "col-3"}`}
+        className={`${location.pathname === "/store" ? `gr-${grid}` : "col-3"}`}
       >
         <Link className="product-card position-relative">
           <div className="wishlist-icon position-absolute">
@@ -91,6 +95,10 @@ const ProductCard = (props) => {
               edit={false}
               activeColor="#ffd700"
             />
+            <p className={`description ${grid === 12 ? "d-block" : "d-none"}`}>
+              At vero eos headphones bulk pack multi colored for students vero
+              eos headphones bulk pack multi colored for students...
+            </p>
             <p className="price">$100.00</p>
           </div>
 

@@ -10,7 +10,7 @@ const OurStore = () => {
 
   return (
     <>
-      <Meta title="Our Store" />
+      <Meta title="E-Commerce | Our Store" />
       <BreadCrumb title="Our Store" />
       <div className="store-wrapper home-wrapper-2 py-5">
         <div className="container-xxl">
