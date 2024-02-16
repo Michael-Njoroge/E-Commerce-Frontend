@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import ProductCard from "../components/ProductCard";
+import Colors from "../components/Colors";
 
 import Meta from "../components/Meta";
 import ReactStars from "react-rating-stars-component";
@@ -79,17 +80,7 @@ const OurStore = () => {
                   </div>
                   <h5 className="sub-title">Colors</h5>
                   <div>
-                    <ul className="colors ps-0">
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                    </ul>
+                    <Colors />
                   </div>
                   <h5 className="sub-title">Size</h5>
                   <div>
