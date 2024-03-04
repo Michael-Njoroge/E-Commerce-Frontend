@@ -47,7 +47,7 @@ const Header = () => {
               </div>
             </div>
             <div className="col-5">
-              <div className="header-upper-links d-flex align-items-center justify-content-between">
+              <div className="header-upper-links d-flex align-items-center justify-content-between gap-15">
                 <div>
                   <Link
                     to="/compare-products"
