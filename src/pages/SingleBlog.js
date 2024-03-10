@@ -5,8 +5,8 @@ import Meta from "../components/Meta";
 const SingleBlog = () => {
   return (
     <>
-      <Meta title="E-Commerce | SingleBlog" />
-      <BreadCrumb title="SingleBlog" />
+      <Meta title="E-Commerce | Dynamic Blog Name" />
+      <BreadCrumb title="Dynamic Blog Name" />
     </>
   );
 };

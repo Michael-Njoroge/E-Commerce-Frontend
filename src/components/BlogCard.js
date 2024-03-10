@@ -15,7 +15,7 @@ const BlogCard = () => {
             Your're Only As Good As Your Last Collection,Which Is An Enomous
             Pressure. I Think There Is Something About...
           </p>
-          <Link to="/" className="button">
+          <Link to="/blog/id" className="button">
             READ MORE
           </Link>
         </div>
