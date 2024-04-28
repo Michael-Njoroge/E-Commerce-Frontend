@@ -723,4 +723,10 @@ footer .input-group-text {
   font-size: 14px;
   color: var(--color-777777);
 }
+
+.main-product-page{
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+}
 /*Main Product Pae End*/

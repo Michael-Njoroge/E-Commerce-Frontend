@@ -13,7 +13,9 @@ const SingleProduct = () => {
       <div className="main-product-wrapper home-wrapper-2">
         <div className="container-xxl">
           <div className="row">
-            <div className="col-6"></div>
+            <div className="col-6">
+            <div className="main-product-image"></div>
+            </div>
             <div className="col-6"></div>
           </div>
         </div>
