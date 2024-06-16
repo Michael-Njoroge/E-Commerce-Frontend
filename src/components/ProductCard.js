@@ -25,7 +25,7 @@ const ProductCard = (props) => {
           </div>
           <div className="product-image">
             <img
-              src="images/headphone-1.avif"
+              src={headphone1}
               className="img-fluid"
               alt="watch"
             />
@@ -75,7 +75,7 @@ const ProductCard = (props) => {
         <Link className="product-card position-relative">
           <div className="wishlist-icon position-absolute">
             <Link>
-              <img src={wishlist} alt="wish" />
+              <img src={wish} alt="wish" />
             </Link>
           </div>
           <div className="product-image">
@@ -112,13 +112,13 @@ const ProductCard = (props) => {
           <div className="action-bar position-absolute">
             <div className="d-flex flex-column gap-15">
               <Link>
-                <img src="images/prodcompare.svg" alt="compare" />
+                <img src={productcompare} alt="compare" />
               </Link>
               <Link>
-                <img src="images/view.svg" alt="view" />
+                <img src={view} alt="view" />
               </Link>
               <Link>
-                <img src="images/add-cart.svg" alt="cart" />
+                <img src={addcart} alt="cart" />
               </Link>
             </div>
           </div>
