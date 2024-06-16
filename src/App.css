@@ -794,3 +794,26 @@ footer .input-group-text {
   color: var(--color-777777);
 }
 /*Main Product Page End*/
+
+/*Cart page*/
+.cart-header,.cart-data{
+  border-bottom: 1px solid #eaeaea;
+}
+.cart-header h4{
+  font-size: 13px;
+  color: var(--color-777777);
+  text-transform: uppercase;
+}
+.cart-col-1{
+  width: 40%;
+}
+.cart-col-2{
+  width: 10%;
+}
+.cart-col-3{
+  width: 15%;
+}
+.cart-col-4{
+  width: 15%;
+}
+/*Cart page End*/
