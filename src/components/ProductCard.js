@@ -1,6 +1,13 @@
 import React from "react";
 import ReactStars from "react-rating-stars-component";
 import { Link, useLocation } from "react-router-dom";
+import productcompare from "../images/prodcompare.svg";
+import wish from "../images/wish.svg";
+import wishlist from "../images/wishlist.svg";
+import addcart from "../images/add-cart.svg";
+import view from "../images/view.svg";
+import headphone1 from "../images/headphone-1.avif";
+import headphone2 from "../images/headphone-2.avif";
 
 const ProductCard = (props) => {
   const { grid } = props;
@@ -13,7 +20,7 @@ const ProductCard = (props) => {
         <Link to={":id"} className="product-card position-relative">
           <div className="wishlist-icon position-absolute">
             <Link>
-              <img src="images/wish.svg" alt="wish" />
+              <img src={wish} alt="wish" />
             </Link>
           </div>
           <div className="product-image">
@@ -23,7 +30,7 @@ const ProductCard = (props) => {
               alt="watch"
             />
             <img
-              src="images/headphone-2.avif"
+              src={headphone2}
               className="img-fluid"
               alt="watch1"
             />
@@ -50,13 +57,13 @@ const ProductCard = (props) => {
           <div className="action-bar position-absolute">
             <div className="d-flex flex-column gap-15">
               <Link>
-                <img src="images/prodcompare.svg" alt="compare" />
+                <img src={productcompare} alt="compare" />
               </Link>
               <Link>
-                <img src="images/view.svg" alt="view" />
+                <img src={view} alt="view" />
               </Link>
               <Link>
-                <img src="images/add-cart.svg" alt="cart" />
+                <img src={addcart} alt="cart" />
               </Link>
             </div>
           </div>
@@ -68,17 +75,17 @@ const ProductCard = (props) => {
         <Link className="product-card position-relative">
           <div className="wishlist-icon position-absolute">
             <Link>
-              <img src="images/wish.svg" alt="wish" />
+              <img src={wishlist} alt="wish" />
             </Link>
           </div>
           <div className="product-image">
             <img
-              src="images/headphone-1.avif"
+              src={headphone1}
               className="img-fluid"
               alt="watch"
             />
             <img
-              src="images/headphone-2.avif"
+              src={headphone2}
               className="img-fluid"
               alt="watch1"
             />

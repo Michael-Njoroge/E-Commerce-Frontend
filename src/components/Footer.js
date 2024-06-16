@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { BsLinkedin, BsYoutube, BsGithub, BsInstagram } from "react-icons/bs";
+import newsletter from "../images/newsletter.png";
 
 const Footer = () => {
   return (
@@ -10,7 +11,7 @@ const Footer = () => {
           <div className="row align-items-center">
             <div className="col-5">
               <div className="footer-top-data d-flex gap-30 align-items-center">
-                <img src="images/newsletter.png" alt="newsletter" />
+                <img src={newsletter} alt="newsletter" />
                 <h2 className="mb-0 text-white ">Sign Up For Newsletter</h2>
               </div>
             </div>
@@ -61,16 +62,16 @@ const Footer = () => {
                 </a>
                 <div className="social-icons d-flex align-items-center gap-30 mt-4">
                   {/* eslint-disable jsx-a11y/anchor-is-valid */}
-                  <a className="text-white" href="">
+                  <a className="text-white" href="#">
                     <BsLinkedin className="fs-4" />
                   </a>
-                  <a className="text-white" href="">
+                  <a className="text-white" href="#">
                     <BsInstagram className="fs-4" />
                   </a>
-                  <a className="text-white" href="">
+                  <a className="text-white" href="#">
                     <BsGithub className="fs-4" />
                   </a>
-                  <a className="text-white" href="">
+                  <a className="text-white" href="#">
                     <BsYoutube className="fs-4" />
                   </a>
                 </div>
