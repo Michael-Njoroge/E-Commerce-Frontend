@@ -14,14 +14,15 @@ const Checkout = () => {
                 <h3 className="website-name">Dev Corner</h3>
                 <nav style={{"--bs-breadcrumb-divider": '>'}} aria-label="breadcrumb">
                   <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><Link to="/cart" className="text-dark">Cart</Link>&nbsp;/</li>
-                    <li className="breadcrumb-item active" aria-current="page">Information &nbsp;/</li>
-                    <li className="breadcrumb-item active" aria-current="page">Shipping &nbsp;/</li>
+                    <li className="breadcrumb-item"><Link to="/cart" className="text-dark total-price">Cart</Link>&nbsp;/</li>
+                    <li className="breadcrumb-item total-price active" aria-current="page">Information &nbsp;/</li>
+                    <li className="breadcrumb-item total-price active" aria-current="page">Shipping &nbsp;/</li>
                     <li className="breadcrumb-item active" aria-current="page">Payment</li>
                   </ol>
                 </nav>
-                <h4 className="title">Contact Information</h4>
-                <p className="user-details">Michael Njoroge(mikethecoder12@gmail.com)</p>
+                <h4 className="title total">Contact Information</h4>
+                <p className="user-details total">Michael Njoroge(mikethecoder12@gmail.com)</p>
+                <h5 className="mb-3">Shipping Address</h5>
                 <form action="" className="d-flex flex-wrap justify-content-between gap-15">
                   <div className="w-100">
                     <select name="" id="" className="form-control form-select">
@@ -72,29 +73,29 @@ const Checkout = () => {
                     <img className="img-fluid" src={watch} alt="checkout" />
                   </div>
                   <div>
-                    <h5 className="title">mfsdfds</h5>
-                    <p>s / #sdfsd</p>
+                    <h5 className="total-price">mfsdfds</h5>
+                    <p className="total-price">s / #sdfsd</p>
                   </div>
                 </div>
                 
                 <div className="flex-grow-1">
-                  <h5>$ 100</h5>
+                  <h5 className="total">$ 100</h5>
                 </div>
               </div>
               </div>
               <div className="border-bottom py-4">
                 <div className="d-flex justify-content-between align-items-center">
-                  <p>Subtotal</p>
-                  <p>$ 5000</p>
+                  <p className="total">Subtotal</p>
+                  <p className="total-price">$ 5000</p>
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
-                  <p className="mb-0">Shipping</p>
-                  <p className="mb-0">$ 5000</p>
+                  <p className="mb-0 total">Shipping</p>
+                  <p className="mb-0 total-price">$ 5000</p>
                 </div>
               </div>
               <div className="d-flex justify-content-between align-items-center py-4">
-                <h4>Total</h4>
-                <h5>$ 10000</h5>
+                <h4 className="total">Total</h4>
+                <h5 className="total-price">$ 10000</h5>
               </div>
             </div>
           </div>
