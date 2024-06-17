@@ -3,7 +3,6 @@ import ReactStars from "react-rating-stars-component";
 import { Link, useLocation } from "react-router-dom";
 import productcompare from "../images/prodcompare.svg";
 import wish from "../images/wish.svg";
-import wishlist from "../images/wishlist.svg";
 import addcart from "../images/add-cart.svg";
 import view from "../images/view.svg";
 import headphone1 from "../images/headphone-1.avif";
@@ -19,9 +18,9 @@ const ProductCard = (props) => {
       >
         <Link to={":id"} className="product-card position-relative">
           <div className="wishlist-icon position-absolute">
-            <Link>
+            <button className="border-0 bg-transparent">
               <img src={wish} alt="wish" />
-            </Link>
+            </button>
           </div>
           <div className="product-image">
             <img
@@ -56,15 +55,15 @@ const ProductCard = (props) => {
 
           <div className="action-bar position-absolute">
             <div className="d-flex flex-column gap-15">
-              <Link>
+              <button className="border-0 bg-transparent">
                 <img src={productcompare} alt="compare" />
-              </Link>
-              <Link>
+              </button>
+              <button className="border-0 bg-transparent">
                 <img src={view} alt="view" />
-              </Link>
-              <Link>
+              </button>
+              <button className="border-0 bg-transparent">
                 <img src={addcart} alt="cart" />
-              </Link>
+              </button>
             </div>
           </div>
         </Link>
@@ -111,15 +110,15 @@ const ProductCard = (props) => {
 
           <div className="action-bar position-absolute">
             <div className="d-flex flex-column gap-15">
-              <Link>
+              <button className="border-0 bg-transparent">
                 <img src={productcompare} alt="compare" />
-              </Link>
-              <Link>
+              </button>
+              <button className="border-0 bg-transparent">
                 <img src={view} alt="view" />
-              </Link>
-              <Link>
+              </button>
+              <button className="border-0 bg-transparent">
                 <img src={addcart} alt="cart" />
-              </Link>
+              </button>
             </div>
           </div>
         </Link>
