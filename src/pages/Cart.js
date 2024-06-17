@@ -1,7 +1,6 @@
 import React from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
-import BlogCard from "../components/BlogCard";
 import watch from "../images/watch.jpg";
 import {AiFillDelete} from "react-icons/ai";
 import {Link} from "react-router-dom";
