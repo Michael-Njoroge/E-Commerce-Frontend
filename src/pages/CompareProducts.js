@@ -2,14 +2,14 @@ import React from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import Colors from "../components/Colors";
+import Container from "../components/Container";
 
 const CompareProducts = () => {
   return (
     <>
       <Meta title="E-Commerce | Compare-Products" />
       <BreadCrumb title="Compare Products" />
-      <div className="compare-products-wrapper py-5 home-wrapper-2">
-        <div className="container-xxl">
+      <Container class1="compare-products-wrapper py-5 home-wrapper-2">
           <div className="row">
             <div className="col-3">
               <div className="compare-product-card position-relative">
@@ -110,8 +110,7 @@ const CompareProducts = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+      </Container>
     </>
   );
 };

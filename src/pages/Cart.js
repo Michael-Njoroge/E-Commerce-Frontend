@@ -4,14 +4,14 @@ import Meta from "../components/Meta";
 import watch from "../images/watch.jpg";
 import {AiFillDelete} from "react-icons/ai";
 import {Link} from "react-router-dom";
+import Container from "../components/Container";
 
 const Cart = () => {
   return (
     <>
       <Meta title="E-Commerce | Cart" />
       <BreadCrumb title="Cart" />
-      <div className="cart-wrapper home-wrapper-2 py-5">
-        <div className="container-xxl">
+      <Container class1="cart-wrapper home-wrapper-2 py-5">
           <div className="row">
             <div className="col-12">
               <div className="cart-header py-3 d-flex align-items-center justify-content-between">
@@ -23,7 +23,7 @@ const Cart = () => {
                <div className="cart-data mb-2 py-3 d-flex align-items-center justify-content-between">
               	<div className="cart-col-1 gap-15 d-flex align-items-center">
               		<div className="w-25">
-              			<img src={watch} className="img-fluid" alt="product image"/>
+              			<img src={watch} className="img-fluid" alt="product"/>
               		</div>
               		<div className="w-75">
               			<p>Kids headphones bulk 10 pack multi colored for students</p>
@@ -58,8 +58,7 @@ const Cart = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+      </Container>
     </>
   );
 };

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import ProductCard from "../components/ProductCard";
 import Colors from "../components/Colors";
-
 import Meta from "../components/Meta";
 import ReactStars from "react-rating-stars-component";
+import Container from "../components/Container";
 
 const OurStore = () => {
   const [grid, setGrid] = useState("");
@@ -13,8 +13,7 @@ const OurStore = () => {
     <>
       <Meta title="E-Commerce | Our Store" />
       <BreadCrumb title="Our Store" />
-      <div className="store-wrapper home-wrapper-2 py-5">
-        <div className="container-xxl">
+      <Container class1="store-wrapper home-wrapper-2 py-5">
           <div className="row">
             <div className="col-3">
               <div className="filter-card mb-3">
@@ -265,8 +264,7 @@ const OurStore = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+      </Container>
     </>
   );
 };

@@ -7,10 +7,11 @@ import ReactImageZoom from 'react-image-zoom';
 import Colors from "../components/Colors";
 import { TbGitCompare } from "react-icons/tb";
 import { AiOutlineHeart } from "react-icons/ai";
+import Container from "../components/Container";
 
 const SingleProduct = () => {
   const props = {width: 400, height: 600, zoomWidth: 600, img: "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-ferarcosn-190819.jpg&fm=jpg"};
-  const [orderProduct, setOrderedProduct] = useState(true);
+  const [orderProduct] = useState(true);
   const copyToClipboard = (text) => {
     console.log('text', text)
     var textField = document.createElement('textarea')
@@ -24,8 +25,7 @@ const SingleProduct = () => {
     <>
       <Meta title="E-Commerce | Product Name" />
       <BreadCrumb title="Product Name" />
-      <div className="main-product-wrapper py-5 home-wrapper-2">
-        <div className="container-xxl">
+      <Container class1="main-product-wrapper py-5 home-wrapper-2">
             <div className="row">
               <div className="col-6">
                 <div className="main-product-image">
@@ -146,10 +146,8 @@ const SingleProduct = () => {
                   </div>
                 </div>
             </div>
-        </div>
-      </div>
-      <div className="description-wrapper py-5 home-wrapper-2">
-        <div className="container-xxl">
+      </Container>
+      <Container class1="description-wrapper py-5 home-wrapper-2">
           <div className="row">
             <div className="col-12">
               <h4>Description</h4>
@@ -163,10 +161,8 @@ const SingleProduct = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <section id="review" className="reviews-wrapper  home-wrapper-2">
-        <div className="container-xxl">
+      </Container>
+      <Container id="review" class1="reviews-wrapper  home-wrapper-2">
           <div className="row">
             <div className="col-12">
               <h3>Reviews</h3>
@@ -246,19 +242,16 @@ const SingleProduct = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
+      </Container>
 
-      <section className="featured-wrapper py-5 home-wrapper-2">
-        <div className="container-xxl">
+      <Container class1="featured-wrapper py-5 home-wrapper-2">
           <div className="row">
             <div className="col-12">
               <h5 className="section-heading">Our Popular Products</h5>
             </div>
             <ProductCard />
           </div>
-        </div>
-      </section>
+      </Container>
     </>
   );
 };
