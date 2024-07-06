@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import authService from './authService'
 
-export const registerUser = createAsyncThunk('auth/user',
+export const register = createAsyncThunk('auth/user',
 	async (data, thunkApi) => {
 		try{
-			return await authService.registerUser(data)
+			return await authService.register(data)
 		}catch(error){
 			return thunkApi.rejectWithValue(error);
 		}
@@ -25,15 +25,15 @@ export const authSlice = createSlice({
   reducers: {},
     extraReducers: (builder) => {
     builder
-      .addCase(registerUser.pending, (state) => {
+      .addCase(register.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(registerUser.fulfilled, (state, action) => {
+      .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.user = action.payload;
       })
-      .addCase(registerUser.rejected, (state, action) => {
+      .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;

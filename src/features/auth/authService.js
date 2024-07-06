@@ -1,6 +1,6 @@
 import api from '../../utils/axiosInstance';
 
-const registerUser = async(userData) => {
+const register = async(userData) => {
 	const response = await api.post('auth/user/register',userData);
 	if(response.data){
 		localStorage.setItem('user', JSON.stringify(response.data.data));
@@ -10,7 +10,7 @@ const registerUser = async(userData) => {
 
 
 const authService = {
-	registerUser,
+	register,
 }
 
 export default authService;
