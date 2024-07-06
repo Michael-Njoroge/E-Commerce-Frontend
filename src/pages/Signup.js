@@ -64,7 +64,6 @@ const Signup = () => {
                   onChange={formik.handleChange('firstname')}
                   value={formik.values.firstname} 
                   id="firstname" 
-                  label="Firstname"
                 />
                 <div className="errors">
                   {formik.touched.firstname && formik.errors.firstname ? (
@@ -79,7 +78,6 @@ const Signup = () => {
                   onChange={formik.handleChange('lastname')}
                   value={formik.values.lastname} 
                   id="lastname" 
-                  label="Lastname"
                 />
                 <div className="errors">
                   {formik.touched.lastname && formik.errors.lastname ? (
@@ -94,7 +92,6 @@ const Signup = () => {
                   onChange={formik.handleChange('email')}
                   value={formik.values.email} 
                   id="email" 
-                  label="Email"
                 />
                 <div className="errors">
                   {formik.touched.email && formik.errors.email ? (
@@ -109,7 +106,6 @@ const Signup = () => {
                   onChange={formik.handleChange('mobile')}
                   value={formik.values.mobile} 
                   id="mobile" 
-                  label="Mobile"
                 />
                 <div className="errors">
                   {formik.touched.mobile && formik.errors.mobile ? (
@@ -124,7 +120,6 @@ const Signup = () => {
                   onChange={formik.handleChange('password')}
                   value={formik.values.password} 
                   id="password" 
-                  label="Password"
                 />
                 <div className="errors">
                   {formik.touched.password && formik.errors.password ? (
