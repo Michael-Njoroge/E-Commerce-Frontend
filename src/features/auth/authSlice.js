@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import authService from './authService'
+import { toast } from 'react-toastify';
 
 export const register = createAsyncThunk('register/user',async (data, thunkApi) => {
 		try{
@@ -19,8 +20,10 @@ export const login = createAsyncThunk('login/user',async (data, thunkApi) => {
   },
 )
 
+const userFromLocalStorage = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
+
 const initialState = {
-	user: "",
+	user: userFromLocalStorage,
 	isError: false,
 	isSuccess: false,
 	isLoading: false,
@@ -30,7 +33,15 @@ const initialState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    reset: (state) => {
+      state.createdUser = null;
+      state.isError = false;
+      state.isLoading = false;
+      state.isSuccess = false;
+      state.message = "";
+    },
+  },
     extraReducers: (builder) => {
     builder
       .addCase(register.pending, (state) => {
@@ -39,14 +50,19 @@ export const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.user = action.payload;
+        state.createdUser = action.payload;
+        if(state.isSuccess === true){
+           toast.info("Account created successfully");
+        }
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
-        state.user =  null;
         state.message = action.error;
+        if(state.isSuccess === true){
+           toast.error(action.error);
+        }
       })
       .addCase(login.pending, (state) => {
         state.isLoading = true
@@ -55,6 +71,9 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.user = action.payload;
+        if(state.isSuccess === true){
+           toast.info("Welcome back");
+        }
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
@@ -66,4 +85,5 @@ export const authSlice = createSlice({
   }
 });
 
+export const {reset} = authSlice.actions
 export default authSlice.reducer
