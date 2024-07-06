@@ -18,7 +18,6 @@ const Layout = () => {
       rtl={false}
       pauseOnFocusLoss
       draggable
-      theme="dark"
       pauseOnHover
     />
   <Outlet/>
