@@ -2,9 +2,9 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import authService from './authService'
 
 export const registerUser = createAsyncThunk('auth/user',
-	async (data, thunkAPI) => {
+	async (data, thunkApi) => {
 		try{
-			return await userService.registerUser(data)
+			return await authService.registerUser(data)
 		}catch(error){
 			return thunkApi.rejectWithValue(error);
 		}
