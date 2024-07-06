@@ -23,23 +23,24 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(registerUser.pending, (state) => {
-      state.isLoading = true;
-    })
-    .builder.addCase(registerUser.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.isError = false;
-      state.isSuccess = true;
-      state.user = action.payload;
-    })
-    .builder.addCase(registerUser.rejected, (state, action) => {
-      state.isLoading = false;
-      state.isSuccess = false;
-      state.isError = true ;
-      state.message = action.error;
-    });
-  },
+    extraReducers: (builder) => {
+    builder
+      .addCase(registerUser.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(registerUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = action.payload;
+      })
+      .addCase(registerUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.user =  null;
+        state.message = action.error;
+      });
+  }
 });
 
 export default authSlice.reducer
