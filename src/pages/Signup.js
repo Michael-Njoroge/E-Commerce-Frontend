@@ -4,6 +4,7 @@ import Meta from "../components/Meta";
 import Container from "../components/Container";
 import CustomInput from "../components/CustomInput";
 import {useDispatch, useSelector} from 'react-redux'
+import {useNavigate} from "react-router-dom";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { register } from '../features/auth/authSlice';
@@ -19,6 +20,7 @@ let validationSchema = Yup.object({
 
 const Signup = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
