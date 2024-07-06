@@ -52,6 +52,7 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.createdUser = action.payload;
         if(state.isSuccess === true){
+           localStorage.setItem('token', action.payload.token);
            toast.info("Account created successfully");
         }
       })
@@ -72,6 +73,7 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.user = action.payload;
         if(state.isSuccess === true){
+           localStorage.setItem('token', action.payload.token);
            toast.info("Welcome back");
         }
       })
