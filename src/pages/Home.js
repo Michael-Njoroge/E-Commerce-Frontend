@@ -350,15 +350,15 @@ const Home = () => {
           <div className="row">
           {
             blogState && blogState.map((item,index) => {
-              if(index < 3) {
+              if(index < 4) {
                 return (
                   <div className="col-3" key={index}>
                     <BlogCard 
                       id={item?.id}
                       title={item?.title}
-                      description={item?.description}
+                      description={<p dangerouslySetInnerHTML={{ __html: blogState[i].description }}/>}
                       image={item?.images[0]?.file_url}
-                      date={moment(item?.created_at).format("MMMM Do, YYYY, h:mm a")}
+                      date={moment(item?.created_at).format("MMMM Do, YYYY")}
                     />
                   </div>
                 )
