@@ -41,11 +41,10 @@ const Blogs = () => {
             </div>
             <div className="col-9">
               <div className="row">
-                <div className="col-6 mb-3">
                   {
                     blogState && blogState.map((item,index) => {
                         return (
-                          <div className="col-3" key={index}>
+                          <div className="col-6 mb-3" key={index}>
                             <BlogCard 
                               id={item?.id}
                               title={item?.title}
@@ -57,7 +56,6 @@ const Blogs = () => {
                         )
                     })
                   }
-                </div>
               </div>
             </div>
           </div>
