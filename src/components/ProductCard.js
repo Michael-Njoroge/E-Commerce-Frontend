@@ -6,7 +6,7 @@ import wish from "../images/wish.svg";
 import addcart from "../images/add-cart.svg";
 import view from "../images/view.svg";
 import headphone1 from "../images/headphone-1.avif";
-import headphone2 from "../images/headphone-2.avif";
+import watch6 from "../images/watch6.jpg";
 
 const ProductCard = (props) => {
   const { grid, data } = props;
@@ -33,7 +33,7 @@ const ProductCard = (props) => {
                   alt="watch"
                 />
                 <img
-                  src={headphone2}
+                  src={watch6}
                   className="img-fluid"
                   alt="watch1"
                 />
