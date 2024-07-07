@@ -10,9 +10,17 @@ const getProduct = async(id) => {
 	return response.data.data;
 }
 
+const addToWishlist = async(prodId) => {
+	const response = await api.put('wishlist',{
+		product_id: prodId,
+	});
+	return response.data.data;
+}
+
 const productService = {
 	getProducts,
 	getProduct,
+	addToWishlist
 }
 
 export default productService;

@@ -271,7 +271,7 @@ const OurStore = () => {
               </div>
               <div className="product-list pb-5">
                 <div className="d-flex flex-wrap gap-10">
-                  <ProductCard data={productState} grid={grid} />
+                  <ProductCard data={productState ? productState : []} grid={grid} />
                 </div>
               </div>
             </div>

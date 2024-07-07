@@ -20,10 +20,10 @@ export const login = createAsyncThunk('login/user',async (data, thunkApi) => {
   },
 )
 
-const userFromLocalStorage = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
+const customer = localStorage.getItem('customer') ? JSON.parse(localStorage.getItem('customer')) : null;
 
 const initialState = {
-	user: userFromLocalStorage,
+	user: customer,
 	isError: false,
 	isSuccess: false,
 	isLoading: false,

@@ -7,9 +7,9 @@ const api = axios.create({
 
 api.interceptors.request.use(
   config => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user.token) {
-      config.headers.Authorization = `Bearer ${user.token}`;
+    const customer = JSON.parse(localStorage.getItem('customer'));
+    if (customer && customer.token) {
+      config.headers.Authorization = `Bearer ${customer.token}`;
     }
     return config;
   },
