@@ -13,12 +13,12 @@ const OurStore = () => {
   const productState = useSelector((state) => state.product.products);
   const [grid, setGrid] = useState("");
 
-  const getProducts = () => {
+  const getAllProducts = () => {
     dispatch(getProducts());
   };
 
   useEffect(() => {
-    getProducts
+    getAllProducts()
   }, []);
 
   return (
