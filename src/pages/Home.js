@@ -290,6 +290,7 @@ const Home = () => {
                     price={item?.price} 
                     sold={item?.sold} 
                     quantity={item?.quantity} 
+                    image={item?.images[0]?.file_url}
                     total_rating={item?.total_ratings.toString()}
                   />
                 )
