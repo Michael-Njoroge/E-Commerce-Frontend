@@ -28,7 +28,7 @@ const ProductCard = (props) => {
           key={index}
           className={`${location.pathname === "/product" ? `gr-${grid}` : "col-3"}`}
           >
-            <Link to={`${location.pathname !== "/product" ? "/product/:id" : ":id"}`} className="product-card position-relative">
+            <Link to={`${location.pathname !== "/product" ? `/product/${item?.id}` : `${item?.id}`}`} className="product-card position-relative">
               <div className="wishlist-icon position-absolute">
                 <button className="border-0 bg-transparent" onClick={(e) => {addToWish(item?.id)}}>
                   <img src={wish} alt="wish" />
@@ -87,5 +87,3 @@ const ProductCard = (props) => {
 };
 
 export default ProductCard;
-// At vero eos headphones bulk pack multi colored for students vero
-//                   eos headphones bulk pack multi colored for students...
