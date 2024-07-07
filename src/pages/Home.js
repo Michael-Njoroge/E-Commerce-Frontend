@@ -356,7 +356,7 @@ const Home = () => {
                     <BlogCard 
                       id={item?.id}
                       title={item?.title}
-                      description={<p dangerouslySetInnerHTML={{ __html: blogState[i].description }}/>}
+                      description={<p dangerouslySetInnerHTML={{ __html: item?.description }}/>}
                       image={item?.images[0]?.file_url}
                       date={moment(item?.created_at).format("MMMM Do, YYYY")}
                     />
