@@ -28,7 +28,7 @@ const ProductCard = (props) => {
               </div>
               <div className="product-image">
                 <img
-                  src={item?.images[0].file_url}
+                  src={item?.images[0]?.file_url}
                   className="img-fluid mx-auto"
                   alt="watch"
                 />
