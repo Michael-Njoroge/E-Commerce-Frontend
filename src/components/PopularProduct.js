@@ -35,7 +35,7 @@ const PopularProduct = (props) => {
                   alt="watch"
                 />
                 <img
-                  src={watch6}
+                  src="https://res.cloudinary.com/dvnesx7rh/image/upload/v1720448619/products/products/668bf6691a1d0_1-9180-skylona-men-original-imagsz6hgfgjwqhd.jpeg-removebg-preview.png"
                   className="img-fluid"
                   alt="watch1"
                 />
