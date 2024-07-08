@@ -25,16 +25,18 @@ const Contact = () => {
   const dispatch = useDispatch();
 
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
       name: '',
       email: '',
       phone: '',
       comment: '',
     },
-         validationSchema: validationSchema,
-         onSubmit: values => {
-            dispatch(postEnquiry(values))
-         },
+    validationSchema: validationSchema,
+      onSubmit: values => {
+      dispatch(postEnquiry(values));
+      formik.resetForm();
+    },
     });
 
   const {createdEnquiry,isError,isLoading,isSuccess,message} = useSelector((state)=>state.contact)
