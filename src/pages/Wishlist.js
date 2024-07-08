@@ -15,9 +15,7 @@ const Wishlist = () => {
 
   const addToWish = (id) => {
     dispatch(addToWishlist(id));
-    setTimeout(() => {
-      dispatch(getWishlist(getUser.id));
-    }, 100);
+    dispatch(getWishlist(getUser.id));
   }
 
 
@@ -25,7 +23,7 @@ const Wishlist = () => {
     if (getUser) {
       dispatch(getWishlist(getUser.id));
     }
-  }, [getUser]);
+  }, [dispatch,getUser]);
 
   return (
     <>
