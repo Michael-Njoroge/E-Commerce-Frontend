@@ -28,7 +28,7 @@ const Wishlist = () => {
       <BreadCrumb title="Wishlist" />
       <Container class1="wishlist-wrapper home-wrapper-2 py-5">
           <div className="row">
-            <div className="col-3">
+            <div className="d-flex gap-30">
             {
               get_wishlist && get_wishlist?.map((item,index) => {
                 return (
