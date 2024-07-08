@@ -6,7 +6,7 @@ import { useLocation} from "react-router-dom";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import Container from "../components/Container";
 import {useDispatch, useSelector} from 'react-redux'
-import { getBlog, reset } from '../features/blog/blogSlice';
+import { getBlog } from '../features/blog/blogSlice';
 
 const SingleBlog = () => {
   const location = useLocation();
@@ -19,11 +19,7 @@ const SingleBlog = () => {
   const { singleBlog } = newBlog;
 
   useEffect(() => {
-    if (getBlogId !== undefined) {
       dispatch(getBlog(getBlogId));
-    }else{
-      dispatch(reset());
-    }
   },[getBlogId])
 
   return (

@@ -28,15 +28,7 @@ const initialState = {
 export const blogSlice = createSlice({
 	name: "blogs",
 	initialState,
-	reducers: {
-		reset: (state) => {
-			state.singleBlog = null;
-			state.isError = false;
-			state.isLoading = false;
-			state.isSuccess = false;
-	       	state.message = '';
-		},
-	},
+	reducers: {},
 	extraReducers: (builder) => {
 		builder
 			.addCase(getBlogs.pending, (state) => {
@@ -70,5 +62,4 @@ export const blogSlice = createSlice({
 	}
 });
 
-export const { reset } = blogSlice.actions;
 export default blogSlice.reducer;
