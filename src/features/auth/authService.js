@@ -17,8 +17,8 @@ const login = async(userData) => {
 }
 
 const getWishlist = async(id) => {
-	const response = await api.get(`users/${id}`);
-	return response.data.data.wishlist;
+	const response = await api.get(`wishlist/${id}`);
+	return response.data.data;
 }
 
 const authService = {

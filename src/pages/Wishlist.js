@@ -15,7 +15,6 @@ const Wishlist = () => {
 
   const addToWish = (id) => {
     dispatch(addToWishlist(id));
-    dispatch(getWishlist(getUser.id));
   }
 
 
@@ -40,13 +39,13 @@ const Wishlist = () => {
                       src="images/cross.svg"
                       alt="cross"
                       className="position-absolute cross img-fluid"
+                      onClick={(e) => {addToWish(item?.id)}}
                     />
                     <div className="wishlist-card-image">
                       <img
                         src={item?.images[0]?.file_url}
                         alt="watch"
                         className="img-fluid w-100"
-                        onClick={() => {addToWish(item?.id)}}
                       />
                     </div>
                     <div className="py-3 px-3">
