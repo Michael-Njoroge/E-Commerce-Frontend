@@ -231,7 +231,7 @@ const OurStore = () => {
                     </select>
                   </div>
                   <div className="align-items-center d-flex gap-10">
-                    <p className="total-products mb-0">21 Products</p>
+                    <p className="total-products mb-0">{productState.length} Products</p>
                     <div className="align-items-center d-flex gap-10 grid">
                       <img
                         onClick={() => {
