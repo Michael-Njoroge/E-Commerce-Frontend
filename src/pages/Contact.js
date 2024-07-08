@@ -1,13 +1,51 @@
-import React from "react";
+import React,  { useEffect } from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
+import { toast } from 'react-toastify';
 import { AiOutlineHome } from "react-icons/ai";
 import { BiPhoneCall } from "react-icons/bi";
 import { AiOutlineMail } from "react-icons/ai";
 import { BiInfoCircle } from "react-icons/bi";
 import Container from "../components/Container";
+import {useDispatch, useSelector} from 'react-redux'
+import CustomInput from "../components/CustomInput";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { postEnquiry, reset } from '../features/enquiry/enquiriesSlice';
+
+
+let validationSchema = Yup.object({
+    name: Yup.string().required('Your name is required'),
+    email: Yup.string().email('Provide a valid email').required('Email is required'),
+    phone : Yup.string().required('Your mobile number is required'),
+    comment : Yup.string().required('Message is required'),
+});
 
 const Contact = () => {
+  const dispatch = useDispatch();
+
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      phone: '',
+      comment: '',
+    },
+         validationSchema: validationSchema,
+         onSubmit: values => {
+            dispatch(postEnquiry(values))
+         },
+    });
+
+  const {createdEnquiry,isError,isLoading,isSuccess,message} = useSelector((state)=>state.contact)
+
+    useEffect(() => {
+        if (createdEnquiry && isSuccess) {
+          toast.success("Comment submitted successfully!");
+          dispatch(reset());
+        }
+    },[createdEnquiry,isError,isLoading,isSuccess]);
+
   return (
     <>
       <Meta title="E-Commerce | Contact Us" />
@@ -30,43 +68,68 @@ const Contact = () => {
               <div className="contact-inner-wrapper d-flex justify-content-between">
                 <div>
                   <h3 className="contact-title mb-4">Contact</h3>
-                  <form action="" className="d-flex flex-column gap-15">
+                  <form action="" onSubmit={formik.handleSubmit} className="d-flex flex-column gap-15">
                     <div>
-                      <input
-                        type="text"
-                        className="form-control"
-                        name=""
-                        id=""
-                        placeholder="Name"
+                      <CustomInput 
+                        type="text" 
+                        name="text" 
+                        placeholder="Name" 
+                        onChange={formik.handleChange('name')}
+                        value={formik.values.name} 
+                        id="name" 
                       />
+                      <div className="errors">
+                        {formik.touched.name && formik.errors.name ? (
+                        <div>{formik.errors.name}</div>
+                        ) : null}
+                      </div>
                     </div>
-                    <div>
-                      <input
-                        type="email"
-                        className="form-control"
-                        name=""
-                        id=""
-                        placeholder="Email"
+                    <div className="mb-3">
+                      <CustomInput 
+                        type="text" 
+                        name="email" 
+                        placeholder="Email Address" 
+                        onChange={formik.handleChange('email')}
+                        value={formik.values.email} 
+                        id="email" 
                       />
+                      <div className="errors">
+                        {formik.touched.email && formik.errors.email ? (
+                        <div>{formik.errors.email}</div>
+                        ) : null}
+                      </div>
                     </div>
-                    <div>
-                      <input
-                        type="tel"
-                        className="form-control"
-                        name=""
-                        id=""
-                        placeholder="Mobile Number"
+                    <div className="mb-3">
+                       <CustomInput 
+                        type="tel" 
+                        name="phone" 
+                        placeholder="Mobile Number" 
+                        onChange={formik.handleChange('phone')}
+                        value={formik.values.phone} 
+                        id="phone" 
                       />
+                      <div className="errors">
+                        {formik.touched.phone && formik.errors.phone ? (
+                        <div>{formik.errors.phone}</div>
+                        ) : null}
+                      </div>
                     </div>
-                    <div>
+                    <div className="mb-3">
                       <textarea
-                        name=""
-                        id=""
+                        name="comment"
+                        id="comment"
                         className="w-100 form-control"
                         cols="30"
                         rows="3"
-                        placeholder="Comments"
+                        value={formik.values.comment} 
+                        onChange={formik.handleChange('comment')}
+                        placeholder="Message..."
                       ></textarea>
+                       <div className="errors">
+                        {formik.touched.comment && formik.errors.comment ? (
+                        <div>{formik.errors.comment}</div>
+                        ) : null}
+                      </div>
                     </div>
                     <div>
                       <button className="button border-0">Submit</button>
