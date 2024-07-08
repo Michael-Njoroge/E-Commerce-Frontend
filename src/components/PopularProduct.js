@@ -8,11 +8,10 @@ import view from "../images/view.svg";
 import headphone1 from "../images/headphone-1.avif";
 import watch6 from "../images/watch6.jpg";
 import { addToWishlist } from '../features/product/productSlice';
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 
 
-const PopularProduct = (props) => {
-  const { data } = props;
+const PopularProduct = ({item}) => {
   const dispatch = useDispatch();
   let location = useLocation();
 
@@ -22,12 +21,7 @@ const PopularProduct = (props) => {
   return (
     <>
     {
-      data?.map((item, index) => {
-        return (
-          <div
-          key={index}
-          className="col-3"
-          >
+          <div className="col-3">
             <Link to='/' className="product-card position-relative">
               <div className="wishlist-icon position-absolute">
                 <button className="border-0 bg-transparent" onClick={(e) => {addToWish(item?.id)}}>
@@ -75,8 +69,6 @@ const PopularProduct = (props) => {
               </div>
             </Link>
           </div>
-        )
-      })
     }
     </>
   );
