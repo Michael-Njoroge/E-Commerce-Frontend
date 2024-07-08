@@ -28,18 +28,25 @@ const Wishlist = () => {
       <BreadCrumb title="Wishlist" />
       <Container class1="wishlist-wrapper home-wrapper-2 py-5">
           <div className="row">
-            <div className="d-flex gap-30">
+            {
+              get_wishlist && get_wishlist.length === 0 && (
+                <div className="text-center fs-3">
+                  You Wishlist is Empty!
+                </div>
+              )
+            }
             {
               get_wishlist && get_wishlist?.map((item,index) => {
                 return (
-                  <div key={index} className="wishlist-card position-relative">
+                  <div className="col-3" key={index}>
+                  <div className="wishlist-card position-relative">
                     <img
                       src="images/cross.svg"
                       alt="cross"
                       className="position-absolute cross img-fluid"
                       onClick={(e) => {addToWish(item?.id)}}
                     />
-                    <div className="wishlist-card-image">
+                    <div className="wishlist-card-image bg-white">
                       <img
                         src={item?.images[0]?.file_url}
                         alt="watch"
@@ -51,10 +58,10 @@ const Wishlist = () => {
                       <h6 className="price">$ {item?.price}</h6>
                     </div>
                 </div>
+                </div>
                 )
               })
             }
-            </div>
           </div>
       </Container>
     </>
