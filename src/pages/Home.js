@@ -351,12 +351,16 @@ const Home = () => {
           {
             blogState && blogState.map((item,index) => {
               if(index < 4) {
+                const maxLength = 100;
+                const trimmedDescription = item?.description.length > maxLength
+                  ? item?.description.substring(0, maxLength) + '...'
+                  : item?.description;
                 return (
                   <div className="col-3" key={index}>
                     <BlogCard 
                       id={item?.id}
                       title={item?.title}
-                      description={<p dangerouslySetInnerHTML={{ __html: item?.description }}/>}
+                      description={<p dangerouslySetInnerHTML={{ __html: trimmedDescription }}/>}
                       image={item?.images[0]?.file_url}
                       date={moment(item?.created_at).format("MMMM Do, YYYY")}
                     />

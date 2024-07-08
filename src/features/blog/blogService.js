@@ -5,8 +5,14 @@ const getBlogs = async() => {
 	return response.data.data;
 }
 
+const getBlog = async(id) => {
+	const response = await api.get(`blogs/${id}`);
+	return response.data.data;
+}
+
 const blogService = {
-	getBlogs
+	getBlogs,
+	getBlog
 }
 
 export default blogService;
