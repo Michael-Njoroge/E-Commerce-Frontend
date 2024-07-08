@@ -30,7 +30,13 @@ const ProductCard = (props) => {
           >
             <Link to={`${location.pathname !== "/product" ? `/product/${item?.id}` : `${item?.id}`}`} className="product-card position-relative">
               <div className="wishlist-icon position-absolute">
-                <button className="border-0 bg-transparent" onClick={(e) => {addToWish(item?.id)}}>
+               <button 
+                  className="border-0 bg-transparent" 
+                  onClick={(e) => { 
+                    e.stopPropagation();
+                    addToWish(item?.id);
+                  }}
+                >
                   <img src={wish} alt="wish" />
                 </button>
               </div>
