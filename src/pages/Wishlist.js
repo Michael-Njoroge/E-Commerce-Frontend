@@ -8,19 +8,23 @@ import { addToWishlist } from '../features/product/productSlice';
 
 const Wishlist = () => {
   const dispatch = useDispatch();
-  const getUser = localStorage.getItem('customer') ? JSON.parse(localStorage.getItem('customer')) : null;
 
-  const newProduct = useSelector((state) =>state.auth);
-  const { get_wishlist } = newProduct;
+  const wishlistState = useSelector((state) =>state?.auth?.get_wishlist);
 
-  const addToWish = (id) => {
-    dispatch(addToWishlist(id));
+  const fetchWish = (id) => {
+    dispatch(getWishlist());
   }
 
-
   useEffect(() => {
-      dispatch(getWishlist(getUser.id));
-  }, [getUser.id]);
+    fetchWish()
+  }, []);
+
+  const removeFromWish = (id) => {
+    dispatch(addToWishlist(id));
+    setTimeout(() => {
+      dispatch(getWishlist());
+    }, 100);
+  }
 
   return (
     <>
@@ -29,14 +33,14 @@ const Wishlist = () => {
       <Container class1="wishlist-wrapper home-wrapper-2 py-5">
           <div className="row">
             {
-              get_wishlist && get_wishlist.length === 0 && (
+              wishlistState && wishlistState.length === 0 && (
                 <div className="text-center fs-3">
                   You Wishlist is Empty!
                 </div>
               )
             }
             {
-              get_wishlist && get_wishlist?.map((item,index) => {
+              wishlistState && wishlistState?.map((item,index) => {
                 return (
                   <div className="col-3" key={index}>
                   <div className="wishlist-card position-relative">
@@ -44,7 +48,7 @@ const Wishlist = () => {
                       src="images/cross.svg"
                       alt="cross"
                       className="position-absolute cross img-fluid"
-                      onClick={(e) => {addToWish(item?.id)}}
+                      onClick={(e) => {removeFromWish(item?.id)}}
                     />
                     <div className="wishlist-card-image bg-white">
                       <img

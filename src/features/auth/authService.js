@@ -16,8 +16,8 @@ const login = async(userData) => {
 	return response.data.data;	
 }
 
-const getWishlist = async(id) => {
-	const response = await api.get(`wishlist/${id}`);
+const getWishlist = async() => {
+	const response = await api.get('wishlist');
 	return response.data.data;
 }
 

@@ -20,9 +20,9 @@ export const login = createAsyncThunk('login/user',async (data, thunkApi) => {
   },
 )
 
-export const getWishlist = createAsyncThunk('product/get-wishlist', async(id,thunkApi) => {
+export const getWishlist = createAsyncThunk('product/get-wishlist', async(thunkApi) => {
   try{
-    return await authService.getWishlist(id)
+    return await authService.getWishlist()
   }catch(error){
     return thunkApi.rejectWithValue(error);
   }
