@@ -41,7 +41,7 @@ const ProductCard = (props) => {
                   alt="watch"
                 />
                 <img
-                  src="https://res.cloudinary.com/dvnesx7rh/image/upload/v1720448619/products/products/668bf6691a1d0_1-9180-skylona-men-original-imagsz6hgfgjwqhd.jpeg-removebg-preview.png"
+                  src="https://res.cloudinary.com/dvnesx7rh/image/upload/v1720461775/blogs/blogs/668c29cd99288_1-fv60015wm01w-fastrack-women-original-imagtwngueejwzcc.jpeg.jpg"
                   className="img-fluid"
                   alt="watch1"
                 />
