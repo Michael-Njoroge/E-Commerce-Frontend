@@ -11,7 +11,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import CustomInput from "../components/CustomInput";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { postEnquiry, reset } from '../features/enquiry/enquiriesSlice';
+import { postEnquiry, reset } from '../features/enquiry/enquirySlice';;
 
 
 let validationSchema = Yup.object({
