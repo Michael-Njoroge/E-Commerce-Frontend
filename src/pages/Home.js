@@ -5,6 +5,7 @@ import Marquee from "react-fast-marquee";
 import BlogCard from "../components/BlogCard";
 import ProductCard from "../components/ProductCard";
 import SpecialProducts from "../components/SpecialProducts";
+import PopularProduct from "../components/PopularProduct";
 import Container from "../components/Container";
 import Meta from "../components/Meta";
 import {services} from "../utils/Data.js"
@@ -304,7 +305,15 @@ const Home = () => {
             <div className="col-12">
               <h5 className="section-heading">Our Popular Products</h5>
             </div>
-            <ProductCard data={productState ? productState : []} />
+            {
+              productState && productState.map((item,index) => {
+                if (item?.tags === "popular") {
+                return (
+                <PopularProduct data={productState ? productState : []} />
+                )
+              }
+              })
+            }
           </div>
       </Container>
       <Container class1="marque-wrapper home-wrapper-2 py-5">
