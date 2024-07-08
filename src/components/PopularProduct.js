@@ -11,7 +11,9 @@ import { addToWishlist } from '../features/product/productSlice';
 import {useDispatch} from 'react-redux'
 
 
-const PopularProduct = ({item}) => {
+const PopularProduct = (props) => {
+  const {item} = props
+  console.log("item",item)
   const dispatch = useDispatch();
   let location = useLocation();
 

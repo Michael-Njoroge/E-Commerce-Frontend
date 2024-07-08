@@ -308,11 +308,10 @@ const Home = () => {
             {
               productState && productState.map((item,index) => {
                 if (item?.tags === "popular") {
-                return (
-                <PopularProduct data={item} />
-                )
+                  return (
+                  <PopularProduct item={item} />
+                  )
               }
-              return null;
               })
             }
           </div>
