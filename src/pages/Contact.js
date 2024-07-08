@@ -39,14 +39,14 @@ const Contact = () => {
     },
     });
 
-  const {createdEnquiry,isError,isLoading,isSuccess,message} = useSelector((state)=>state.contact)
+  const {contact,isError,isLoading,isSuccess,message} = useSelector((state)=>state.contact)
 
     useEffect(() => {
-        if (createdEnquiry && isSuccess) {
+        if (contact && isSuccess) {
           toast.success("Comment submitted successfully!");
           dispatch(reset());
         }
-    },[createdEnquiry,isError,isLoading,isSuccess]);
+    },[contact,isError,isLoading,isSuccess]);
 
   return (
     <>

@@ -22,7 +22,7 @@ export const enquirySlice = createSlice({
 	initialState,
 	reducers: {
 		reset: (state) => {
-			state.createdEnquiry = null;
+			state.contact = null;
 			state.isError = false;
 			state.isLoading = false;
 			state.isSuccess = false;
