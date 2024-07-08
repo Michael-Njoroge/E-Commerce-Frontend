@@ -15,9 +15,9 @@ import { postEnquiry, reset } from '../features/enquiry/enquirySlice';;
 
 
 let validationSchema = Yup.object({
-    name: Yup.string().required('Your name is required'),
+    name: Yup.string().required('Name is required'),
     email: Yup.string().email('Provide a valid email').required('Email is required'),
-    phone : Yup.string().required('Your mobile number is required'),
+    phone : Yup.string().required('mMobile number is required'),
     comment : Yup.string().required('Message is required'),
 });
 
@@ -43,7 +43,7 @@ const Contact = () => {
 
     useEffect(() => {
         if (contact && isSuccess) {
-          toast.success("Comment submitted successfully!");
+          toast.success("Comment submitted!");
           dispatch(reset());
         }
     },[contact,isError,isLoading,isSuccess]);
