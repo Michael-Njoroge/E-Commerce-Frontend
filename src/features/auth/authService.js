@@ -16,9 +16,15 @@ const login = async(userData) => {
 	return response.data.data;	
 }
 
+const getWishlist = async(id) => {
+	const response = await api.get(`users/${id}`);
+	return response.data.data.wishlist;
+}
+
 const authService = {
 	register,
-	login
+	login,
+	getWishlist
 }
 
 export default authService;

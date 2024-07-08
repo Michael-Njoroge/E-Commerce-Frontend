@@ -20,6 +20,14 @@ export const login = createAsyncThunk('login/user',async (data, thunkApi) => {
   },
 )
 
+export const getWishlist = createAsyncThunk('product/get-wishlist', async(id,thunkApi) => {
+  try{
+    return await authService.getWishlist(id)
+  }catch(error){
+    return thunkApi.rejectWithValue(error);
+  }
+});
+
 const customer = localStorage.getItem('customer') ? JSON.parse(localStorage.getItem('customer')) : null;
 
 const initialState = {
@@ -78,6 +86,21 @@ export const authSlice = createSlice({
         }
       })
       .addCase(login.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.user =  null;
+        state.message = action.error;
+      })
+      .addCase(getWishlist.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getWishlist.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.get_wishlist = action.payload;
+      })
+      .addCase(getWishlist.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;

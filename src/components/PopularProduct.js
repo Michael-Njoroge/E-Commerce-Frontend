@@ -10,10 +10,8 @@ import watch6 from "../images/watch6.jpg";
 import { addToWishlist } from '../features/product/productSlice';
 import {useDispatch} from 'react-redux'
 
-
 const PopularProduct = (props) => {
   const {item} = props
-  console.log("item",item)
   const dispatch = useDispatch();
   let location = useLocation();
 
