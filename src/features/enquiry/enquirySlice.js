@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import enquiryService from './enquiriesService'
+import enquiryService from './enquiryService'
 
 export const postEnquiry = createAsyncThunk('enquiry/post-enquiry', async(data, thunkApi) => {
 	try{
