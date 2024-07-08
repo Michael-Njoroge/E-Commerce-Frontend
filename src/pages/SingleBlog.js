@@ -12,7 +12,7 @@ const SingleBlog = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const getBlogId = location.pathname.split("/")[3];
+  const getBlogId = location.pathname.split("/")[2];
 
   const newBlog = useSelector((state) =>state.blog);
 
