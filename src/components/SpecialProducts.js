@@ -8,7 +8,7 @@ const SpecialProducts = (props) => {
     <>
       <div className="col-6 mb-3">
         <div className="special-product-card">
-          <div className="d-flex justify-content-center">
+          <div className="d-flex justify-content-center gap-30">
             <div>
               <img src={image} className="img-fluid" alt="watch" />
             </div>
