@@ -202,10 +202,15 @@ const Home = () => {
             <div className="col-12">
               <h5 className="section-heading">Featured Collection</h5>
             </div>
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
+            {
+              productState && productState.map((item,index) => {
+                if (item?.tags === "featured") {
+                  return (
+                  <PopularProduct item={item} />
+                  )
+              }
+              })
+            }
           </div>
       </Container>
       <Container class1="famous-wrapper home-wrapper-2 py-5">

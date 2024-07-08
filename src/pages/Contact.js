@@ -17,7 +17,7 @@ import { postEnquiry, reset } from '../features/enquiry/enquirySlice';;
 let validationSchema = Yup.object({
     name: Yup.string().required('Name is required'),
     email: Yup.string().email('Provide a valid email').required('Email is required'),
-    phone : Yup.string().required('mMobile number is required'),
+    phone : Yup.string().required('Mobile number is required'),
     comment : Yup.string().required('Message is required'),
 });
 
