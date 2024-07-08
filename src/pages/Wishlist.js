@@ -19,10 +19,8 @@ const Wishlist = () => {
 
 
   useEffect(() => {
-    if (getUser) {
       dispatch(getWishlist(getUser.id));
-    }
-  }, [dispatch,getUser]);
+  }, [getUser.id]);
 
   return (
     <>
