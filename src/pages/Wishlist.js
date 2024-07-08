@@ -35,7 +35,7 @@ const Wishlist = () => {
             {
               wishlistState && wishlistState.length === 0 && (
                 <div className="text-center fs-3">
-                  You Wishlist is Empty!
+                  Your wishlist is empty
                 </div>
               )
             }
