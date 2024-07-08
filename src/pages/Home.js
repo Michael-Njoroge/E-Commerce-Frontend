@@ -358,7 +358,7 @@ const Home = () => {
       <Container class1="blog-wrapper home-wrapper-2 py-5">
         <div className="row">
             <div className="col-12">
-              <h5 className="section-heading">Our Latest Blogs</h5>
+              <h5 className="section-heading">Our Latest News</h5>
             </div>
           </div>
           <div className="row">
