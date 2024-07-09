@@ -11,7 +11,9 @@ export const getProducts = createAsyncThunk('product/get-products', async(thunkA
 
 export const getProduct = createAsyncThunk('product/get-product', async(id,thunkApi) => {
 	try{
-		return await productService.getProduct(id)
+		 const response = await productService.getProduct(id);
+    console.log('getProduct response:', response);  
+    return response;
 	}catch(error){
 		return thunkApi.rejectWithValue(error);
 	}
@@ -27,7 +29,6 @@ export const addToWishlist = createAsyncThunk('product/wishlist', async(id,thunk
 
 const initialState = {
 	products: [],
-	singleProduct: null,
 	isError: false,
 	isLoading: false,
 	isSuccess: false,
