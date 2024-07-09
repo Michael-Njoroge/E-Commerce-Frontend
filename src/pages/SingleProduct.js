@@ -15,7 +15,7 @@ import { getProduct, addToWishlist } from '../features/product/productSlice';
 const SingleProduct = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  
+
   const getProductId = location.pathname.split("/")[2];
 
   const productState = useSelector((state) => state.product.singleProduct);
@@ -30,7 +30,7 @@ const SingleProduct = () => {
     dispatch(addToWishlist(id))
   }
 
-  const props = {width: 400, height: 600, zoomWidth: 600, img: productState?.images[0]?.file_url};
+  const props = {width: 400, height: 600, zoomWidth: 600, img: productState?.images[0]?.file_url ? productState?.images[0]?.file_url : "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-ferarcosn-190819.jpg&fm=jpg"};
   const [orderProduct] = useState(true);
   const copyToClipboard = (text) => {
     var textField = document.createElement('textarea')
