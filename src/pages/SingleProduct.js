@@ -53,18 +53,15 @@ const SingleProduct = () => {
                   </div>
                 </div>
                 <div className="other-product-images d-flex flex-wrap gap-15">
-                  <div>
-                    <img src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-ferarcosn-190819.jpg&fm=jpg" alt="images" className="img-fluid"/>
-                  </div>
-                  <div>
-                    <img src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-ferarcosn-190819.jpg&fm=jpg" alt="images" className="img-fluid"/>
-                  </div>
-                  <div>
-                    <img src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-ferarcosn-190819.jpg&fm=jpg" alt="images" className="img-fluid"/>
-                  </div>
-                  <div>
-                    <img src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-ferarcosn-190819.jpg&fm=jpg" alt="images" className="img-fluid"/>
-                  </div>
+                {
+                  productState?.images.map((item,index) => {
+                    return (
+                      <div>
+                        <img src={item?.file_url} alt="images" className="img-fluid"/>
+                      </div>
+                    )
+                  })
+                }
                 </div>
               </div>
                 <div className="col-6">

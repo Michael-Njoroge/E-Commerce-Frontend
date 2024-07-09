@@ -60,9 +60,9 @@ const PopularProduct = (props) => {
                   <button className="border-0 bg-transparent">
                     <img src={productcompare} alt="compare" />
                   </button>
-                  <button className="border-0 bg-transparent">
-                    <img onClick={() => {navigate(`/product/${item?.id}`)}} src={view} alt="view" />
-                  </button>
+                  <Link to={`/product/${item?.id}`} className="border-0 bg-transparent">
+                    <img src={view} alt="view" />
+                  </Link>
                   <button className="border-0 bg-transparent">
                     <img src={addcart} alt="cart" />
                   </button>
