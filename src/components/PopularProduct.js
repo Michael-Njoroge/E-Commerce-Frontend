@@ -1,6 +1,6 @@
 import React from "react";
 import ReactStars from "react-rating-stars-component";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import productcompare from "../images/prodcompare.svg";
 import wish from "../images/wish.svg";
 import addcart from "../images/add-cart.svg";
@@ -13,6 +13,7 @@ import {useDispatch} from 'react-redux'
 const PopularProduct = (props) => {
   const {item} = props
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   let location = useLocation();
 
   const addToWish = (id) => {
@@ -22,7 +23,7 @@ const PopularProduct = (props) => {
     <>
     {
           <div className="col-3">
-            <Link to='/' className="product-card position-relative">
+            <div className="product-card position-relative">
               <div className="wishlist-icon position-absolute">
                 <button className="border-0 bg-transparent" onClick={(e) => {addToWish(item?.id)}}>
                   <img src={wish} alt="wish" />
@@ -60,14 +61,14 @@ const PopularProduct = (props) => {
                     <img src={productcompare} alt="compare" />
                   </button>
                   <button className="border-0 bg-transparent">
-                    <img src={view} alt="view" />
+                    <img onClick={() => {navigate(`/product/${item?.id}`)}} src={view} alt="view" />
                   </button>
                   <button className="border-0 bg-transparent">
                     <img src={addcart} alt="cart" />
                   </button>
                 </div>
               </div>
-            </Link>
+            </div>
           </div>
     }
     </>

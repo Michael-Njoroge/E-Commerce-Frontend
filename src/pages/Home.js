@@ -291,6 +291,7 @@ const Home = () => {
                 return (
                   <SpecialProducts 
                     key={index} 
+                    id={item?.id} 
                     brand={item?.brand?.title} 
                     title={item?.title} 
                     price={item?.price} 

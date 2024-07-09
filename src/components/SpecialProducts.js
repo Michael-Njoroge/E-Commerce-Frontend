@@ -3,7 +3,7 @@ import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
 
 const SpecialProducts = (props) => {
-  const {title, brand, total_rating, price, quantity, sold, image} = props
+  const {title, brand, total_rating, price, quantity, sold, image, id} = props
   return (
     <>
       <div className="col-6 mb-3">
@@ -49,7 +49,7 @@ const SpecialProducts = (props) => {
                   ></div>
                 </div>
               </div>
-              <Link className="button">Add to Cart</Link>
+              <Link to={`/product/${id}`} className="button">View</Link>
             </div>
           </div>
         </div>
