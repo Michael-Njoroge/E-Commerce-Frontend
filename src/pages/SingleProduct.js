@@ -16,6 +16,8 @@ const SingleProduct = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const [copyStatus, setCopyStatus] = useState(false);
+  const [color, setColor] = useState(null);
+  const [quantity, setQuantity] = useState(1);
 
   const getProductId = location.pathname.split("/")[2];
   const productState = useSelector((state) =>state.product);
@@ -26,8 +28,12 @@ const SingleProduct = () => {
       dispatch(getProduct(getProductId))
   },[getProductId]);
 
-   const addToWish = (id) => {
+  const addToWish = (id) => {
     dispatch(addToWishlist(id))
+  }
+
+  const uploadCart = () => {
+    alert("cart")
   }
 
   const props = {width: 400, height: 600, zoomWidth: 600, img: singleProduct?.images[0]?.file_url ? singleProduct?.images[0]?.file_url : "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-ferarcosn-190819.jpg&fm=jpg"};
@@ -117,15 +123,21 @@ const SingleProduct = () => {
                       </div>
                        <div className="d-flex flex-column gap-10 mt-2 mb-3">
                         <h3 className="product-heading">Color :</h3>
-                        <Colors />
+                        <Colors colorData={singleProduct?.colors}/>
                       </div>
                        <div className="d-flex align-items-center flex-row gap-15 mt-2 mb-3">
                         <h3 className="product-heading">Quantity :</h3>
                         <div className="">
-                          <input type="number" defaultValue={1} min={1} max={10} style={{width:"70px"}} className="form-control" />
+                          <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value) } min={1} max={10} style={{width:"70px"}} className="form-control" />
                         </div>
                         <div className="d-flex align-items-center gap-30 ms-5">
-                          <button className="button border-0" type="submit">
+                          <button 
+                            className="button border-0" 
+                            type="button" 
+                            // data-bs-toggle="modal" 
+                            // data-bs-target="#staticBackdrop" 
+                            onClick={() => {uploadCart()}}
+                          >
                             Add to Cart
                           </button>
                           <button className="signup button" >

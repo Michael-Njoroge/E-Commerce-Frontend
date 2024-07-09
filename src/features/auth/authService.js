@@ -21,10 +21,16 @@ const getWishlist = async() => {
 	return response.data.data;
 }
 
+const addToCart = async(data) => {
+	const response = await api.post('products/add-cart',data);
+	return response.data.data;
+}
+
 const authService = {
 	register,
 	login,
-	getWishlist
+	getWishlist,
+	addToCart
 }
 
 export default authService;
