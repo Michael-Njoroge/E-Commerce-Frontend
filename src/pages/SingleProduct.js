@@ -17,22 +17,21 @@ const SingleProduct = () => {
   const dispatch = useDispatch();
 
   const getProductId = location.pathname.split("/")[2];
+  const productState = useSelector((state) =>state.product);
 
-  const productState = useSelector((state) => state.product.singleProduct);
+  const { singleProduct } = productState;
   console.log("getProductId",getProductId)
-  console.log("productState",productState)
+  console.log("singleProduct",singleProduct)
 
   useEffect(() => {
-    if (getProductId !== undefined) {
       dispatch(getProduct(getProductId))
-    }
   },[getProductId]);
 
    const addToWish = (id) => {
     dispatch(addToWishlist(id))
   }
 
-  const props = {width: 400, height: 600, zoomWidth: 600, img: productState?.images[0]?.file_url ? productState?.images[0]?.file_url : "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-ferarcosn-190819.jpg&fm=jpg"};
+  const props = {width: 400, height: 600, zoomWidth: 600, img: singleProduct?.images[0]?.file_url ? singleProduct?.images[0]?.file_url : "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-ferarcosn-190819.jpg&fm=jpg"};
   const [orderProduct] = useState(true);
   const copyToClipboard = (text) => {
     var textField = document.createElement('textarea')
@@ -44,8 +43,8 @@ const SingleProduct = () => {
   }
   return (
     <>
-      <Meta title={`E-Commerce | ${productState?.title}`} />
-      <BreadCrumb title={productState?.title} />
+      <Meta title={`E-Commerce | ${singleProduct?.title}`} />
+      <BreadCrumb title={singleProduct?.title} />
       <Container class1="main-product-wrapper py-5 home-wrapper-2">
             <div className="row">
               <div className="col-6">
@@ -56,7 +55,7 @@ const SingleProduct = () => {
                 </div>
                 <div className="other-product-images d-flex flex-wrap gap-15">
                 {
-                  productState?.images.map((item,index) => {
+                  singleProduct?.images.map((item,index) => {
                     return (
                       <div>
                         <img src={item?.file_url} alt="images" className="img-fluid"/>
@@ -69,15 +68,15 @@ const SingleProduct = () => {
                 <div className="col-6">
                   <div className="main-product-details">
                     <div className="border-bottom">
-                      <h3 className="title">{productState?.title}</h3>
+                      <h3 className="title">{singleProduct?.title}</h3>
                     </div>
                      <div className="border-bottom py-3">
-                      <p className="price">$ {productState?.price}</p>
+                      <p className="price">$ {singleProduct?.price}</p>
                       <div className="d-flex align-items-center gap-10">
                         <ReactStars
                           count={5}
                           size={24}
-                          value={productState?.total_ratings.toString()}
+                          value={singleProduct?.total_ratings.toString()}
                           edit={false}
                           activeColor="#ffd700"
                         />
@@ -92,19 +91,19 @@ const SingleProduct = () => {
                       </div>
                       <div className="d-flex align-items-center gap-10 my-2">
                         <h3 className="product-heading">Brand :</h3>
-                        <p className="product-data">{productState?.brand?.title}</p>
+                        <p className="product-data">{singleProduct?.brand?.title}</p>
                       </div>
                       <div className="d-flex align-items-center gap-10 my-2">
                         <h3 className="product-heading">Category :</h3>
-                        <p className="product-data">{productState?.category?.title}</p>
+                        <p className="product-data">{singleProduct?.category?.title}</p>
                       </div>
                       <div className="d-flex align-items-center gap-10 my-2">
                         <h3 className="product-heading">Tags :</h3>
-                        <p className="product-data">{productState?.tags}</p>
+                        <p className="product-data">{singleProduct?.tags}</p>
                       </div>
                       <div className="d-flex align-items-center gap-10 my-2">
                         <h3 className="product-heading">Availabilty :</h3>
-                        <p className="product-data">{productState?.quantity > 1 ? "In Stock" : "Out of Stock"}</p>
+                        <p className="product-data">{singleProduct?.quantity > 1 ? "In Stock" : "Out of Stock"}</p>
                       </div>
                       <div className="d-flex flex-column gap-10 mt-2 mb-3">
                         <h3 className="product-heading">Size :</h3>
@@ -140,7 +139,7 @@ const SingleProduct = () => {
                           Add to Compare</a>
                         </div>
                         <div>
-                          <button className="button border-0" onClick={((e) => {addToWish(productState?.id)})}>
+                          <button className="button border-0" onClick={((e) => {addToWish(singleProduct?.id)})}>
                           <AiOutlineHeart className="fs-5 me-2"/>
                           Add to Wishlist</button>
                         </div>
@@ -170,7 +169,7 @@ const SingleProduct = () => {
             <div className="col-12">
               <h4>Description</h4>
               <div className="bg-white p-3">
-                <p dangerouslySetInnerHTML={{ __html: productState?.description }}> </p>
+                <p dangerouslySetInnerHTML={{ __html: singleProduct?.description }}> </p>
               </div>
             </div>
           </div>
@@ -187,7 +186,7 @@ const SingleProduct = () => {
                       <ReactStars
                         count={5}
                         size={24}
-                        value={productState?.total_ratings.toString()}
+                        value={singleProduct?.total_ratings.toString()}
                         edit={false}
                         activeColor="#ffd700"
                       />
