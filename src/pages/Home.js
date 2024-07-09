@@ -206,7 +206,7 @@ const Home = () => {
               productState && productState.map((item,index) => {
                 if (item?.tags === "featured") {
                   return (
-                  <PopularProduct item={item} />
+                  <PopularProduct key={index} item={item} />
                   )
               }
               })
@@ -315,7 +315,7 @@ const Home = () => {
               productState && productState.map((item,index) => {
                 if (item?.tags === "popular") {
                   return (
-                  <PopularProduct item={item} />
+                  <PopularProduct key={index} item={item} />
                   )
               }
               })

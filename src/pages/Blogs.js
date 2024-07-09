@@ -12,11 +12,10 @@ const Blogs = () => {
   const dispatch = useDispatch();
   const blogState = useSelector((state) => state.blog.blogs);
 
-  const getAllBlogs = () => {
-    dispatch(getBlogs());
-  };
-
   useEffect(() => {
+    const getAllBlogs = () => {
+      dispatch(getBlogs());
+    };
     getAllBlogs()
   }, []);
   return (
@@ -52,7 +51,7 @@ const Blogs = () => {
                             <BlogCard 
                               id={item?.id}
                               title={item?.title}
-                              description={<p dangerouslySetInnerHTML={{ __html: trimmedDescription }}/>}
+                              description=<p dangerouslySetInnerHTML={{ __html: trimmedDescription }}></p>
                               image={item?.images[0]?.file_url}
                               date={moment(item?.created_at).format("MMMM Do, YYYY")}
                             />

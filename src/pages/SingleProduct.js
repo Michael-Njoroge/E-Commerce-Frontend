@@ -15,13 +15,12 @@ import { getProduct, addToWishlist } from '../features/product/productSlice';
 const SingleProduct = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const [copyStatus, setCopyStatus] = useState(false);
 
   const getProductId = location.pathname.split("/")[2];
   const productState = useSelector((state) =>state.product);
 
   const { singleProduct } = productState;
-  console.log("getProductId",getProductId)
-  console.log("singleProduct",singleProduct)
 
   useEffect(() => {
       dispatch(getProduct(getProductId))
@@ -40,6 +39,8 @@ const SingleProduct = () => {
     textField.select()
     document.execCommand('copy')
     textField.remove()
+    setCopyStatus(true);
+    setTimeout(() => setCopyStatus(false), 3000); 
   }
   return (
     <>
@@ -57,7 +58,7 @@ const SingleProduct = () => {
                 {
                   singleProduct?.images.map((item,index) => {
                     return (
-                      <div>
+                      <div key={index}>
                         <img src={item?.file_url} alt="images" className="img-fluid"/>
                       </div>
                     )
@@ -134,14 +135,14 @@ const SingleProduct = () => {
                       </div>
                       <div className="d-flex align-items-center gap-15">
                         <div>
-                          <a href="#">
+                          <a href="javascript:void(0)">
                           <TbGitCompare className="fs-5 me-2"/>
                           Add to Compare</a>
                         </div>
                         <div>
-                          <button className="button border-0" onClick={((e) => {addToWish(singleProduct?.id)})}>
+                          <a href="javascript:void(0)" onClick={((e) => {addToWish(singleProduct?.id)})}>
                           <AiOutlineHeart className="fs-5 me-2"/>
-                          Add to Wishlist</button>
+                          Add to Wishlist</a>
                         </div>
                       </div>  
                        <div className="d-flex flex-column gap-10 my-3">
@@ -153,10 +154,13 @@ const SingleProduct = () => {
                       </div>   
                       <div className="d-flex align-items-center gap-10 my-3">
                         <h3 className="product-heading">Product Link :</h3>
-                        <a href="javascript:void(0)" onClick={() => {
-                          copyToClipboard(window.location.href)
-                        }}>
-                          Copy Product Link
+                        <a
+                          href="javascript:void(0)"
+                          onClick={() => {
+                            copyToClipboard(window.location.href);
+                          }}
+                        >
+                          {copyStatus ? "Copied!" : "Copy Product Link"}
                         </a>
                       </div>                 
                     </div>
@@ -169,7 +173,7 @@ const SingleProduct = () => {
             <div className="col-12">
               <h4>Description</h4>
               <div className="bg-white p-3">
-                <p dangerouslySetInnerHTML={{ __html: singleProduct?.description }}> </p>
+                <p dangerouslySetInnerHTML={{ __html: singleProduct?.description }} />
               </div>
             </div>
           </div>
@@ -186,7 +190,7 @@ const SingleProduct = () => {
                       <ReactStars
                         count={5}
                         size={24}
-                        value={singleProduct?.total_ratings.toString()}
+                        value={singleProduct?.total_ratings}
                         edit={false}
                         activeColor="#ffd700"
                       />

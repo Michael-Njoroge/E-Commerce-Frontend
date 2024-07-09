@@ -11,13 +11,12 @@ const Wishlist = () => {
 
   const wishlistState = useSelector((state) =>state?.auth?.get_wishlist);
 
-  const fetchWish = (id) => {
-    dispatch(getWishlist());
-  }
-
   useEffect(() => {
-    fetchWish()
-  }, []);
+    const fetchWish = () => {
+      dispatch(getWishlist());
+    };
+    fetchWish();
+  }, [dispatch]);
 
   const removeFromWish = (id) => {
     dispatch(addToWishlist(id));
