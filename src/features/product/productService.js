@@ -11,6 +11,11 @@ const getProduct = async(id) => {
 	return response.data.data;
 }
 
+const getCart = async() => {
+	const response = await api.get('user-cart');
+	return response.data.data;
+}
+
 const addToWishlist = async(prodId) => {
 	const response = await api.put('wishlist',{
 		product_id: prodId,
@@ -21,7 +26,8 @@ const addToWishlist = async(prodId) => {
 const productService = {
 	getProducts,
 	getProduct,
-	addToWishlist
+	addToWishlist,
+	getCart
 }
 
 export default productService;

@@ -10,7 +10,9 @@ import {useNavigate, useLocation} from "react-router-dom";
 import { TbGitCompare } from "react-icons/tb";
 import { AiOutlineHeart } from "react-icons/ai";
 import Container from "../components/Container";
+import { toast } from 'react-toastify';
 import { getProduct, addToWishlist } from '../features/product/productSlice';
+import { addToCart } from '../features/auth/authSlice';
 
 const SingleProduct = () => {
   const location = useLocation();
@@ -33,7 +35,11 @@ const SingleProduct = () => {
   }
 
   const uploadCart = () => {
-    alert("cart")
+    if (color === null) {
+      toast.error("Please choose a color")
+    }else{
+      dispatch(addToCart({product: singleProduct?.id, quantity: quantity, color: color}))
+    }
   }
 
   const props = {width: 400, height: 600, zoomWidth: 600, img: singleProduct?.images[0]?.file_url ? singleProduct?.images[0]?.file_url : "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-ferarcosn-190819.jpg&fm=jpg"};
@@ -123,12 +129,12 @@ const SingleProduct = () => {
                       </div>
                        <div className="d-flex flex-column gap-10 mt-2 mb-3">
                         <h3 className="product-heading">Color :</h3>
-                        <Colors colorData={singleProduct?.colors}/>
+                        <Colors setColor={setColor} colorData={singleProduct?.colors}/>
                       </div>
                        <div className="d-flex align-items-center flex-row gap-15 mt-2 mb-3">
                         <h3 className="product-heading">Quantity :</h3>
                         <div className="">
-                          <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value) } min={1} max={10} style={{width:"70px"}} className="form-control" />
+                          <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value) } min={1} max={(singleProduct?.quantity ?? 0) - (singleProduct?.sold ?? 0)} style={{width:"70px"}} className="form-control" />
                         </div>
                         <div className="d-flex align-items-center gap-30 ms-5">
                           <button 

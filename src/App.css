@@ -482,6 +482,7 @@ footer .input-group-text {
   height: 20px;
   background-color: red;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .random-products h5 {
