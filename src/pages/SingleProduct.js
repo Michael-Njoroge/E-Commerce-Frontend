@@ -14,6 +14,8 @@ import { getProduct, addToWishlist } from '../features/product/productSlice';
 
 const SingleProduct = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
+  
   const getProductId = location.pathname.split("/")[2];
 
   const productState = useSelector((state) => state.product.singleProduct);
@@ -154,7 +156,7 @@ const SingleProduct = () => {
                       <div className="d-flex align-items-center gap-10 my-3">
                         <h3 className="product-heading">Product Link :</h3>
                         <a href="javascript:void(0)" onClick={() => {
-                          copyToClipboard(productState?.images[0]?.file_url)
+                          copyToClipboard(window.location.href)
                         }}>
                           Copy Product Link
                         </a>
