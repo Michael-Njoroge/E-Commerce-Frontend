@@ -19,6 +19,8 @@ const SingleProduct = () => {
   const getProductId = location.pathname.split("/")[2];
 
   const productState = useSelector((state) => state.product.singleProduct);
+  console.log("getProductId",getProductId)
+  console.log("productState",productState)
 
   useEffect(() => {
     if (getProductId !== undefined) {
