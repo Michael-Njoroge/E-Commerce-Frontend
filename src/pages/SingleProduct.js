@@ -11,24 +11,35 @@ import { TbGitCompare } from "react-icons/tb";
 import { AiOutlineHeart } from "react-icons/ai";
 import Container from "../components/Container";
 import { toast } from 'react-toastify';
-import { getProduct, addToWishlist } from '../features/product/productSlice';
+import { getProduct, addToWishlist, getCart } from '../features/product/productSlice';
 import { addToCart } from '../features/auth/authSlice';
 
 const SingleProduct = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [copyStatus, setCopyStatus] = useState(false);
+  const [alreadyAdded, setAlreadyAdded] = useState(false);
   const [color, setColor] = useState(null);
   const [quantity, setQuantity] = useState(1);
 
   const getProductId = location.pathname.split("/")[2];
+  const cartState = useSelector((state) => state.product.userCart.products);
   const productState = useSelector((state) =>state.product);
-
   const { singleProduct } = productState;
 
   useEffect(() => {
       dispatch(getProduct(getProductId))
+      dispatch(getCart())
   },[getProductId]);
+
+  useEffect(() => {
+    for (let i = 0; i < cartState.length; i++) {
+      if (getProductId === cartState[i]?.product?.id) {
+        setAlreadyAdded(true)
+      }
+    }
+  })
 
   const addToWish = (id) => {
     dispatch(addToWishlist(id))
@@ -39,6 +50,7 @@ const SingleProduct = () => {
       toast.error("Please choose a color")
     }else{
       dispatch(addToCart({product: singleProduct?.id, quantity: quantity, color: color}))
+      navigate("/cart")
     }
   }
 
@@ -127,28 +139,48 @@ const SingleProduct = () => {
                           <span className="badge border border-1 bg-white text-dark border-secondary">XXL</span>
                         </div>
                       </div>
-                       <div className="d-flex flex-column gap-10 mt-2 mb-3">
-                        <h3 className="product-heading">Color :</h3>
-                        <Colors setColor={setColor} colorData={singleProduct?.colors}/>
-                      </div>
+                       {
+                        alreadyAdded === false && 
+                        <>
+                          <div className="d-flex flex-column gap-10 mt-2 mb-3">
+                            <h3 className="product-heading">Color :</h3>
+                            <Colors setColor={setColor} colorData={singleProduct?.colors}/>
+                          </div>
+                        </>
+                       }
                        <div className="d-flex align-items-center flex-row gap-15 mt-2 mb-3">
-                        <h3 className="product-heading">Quantity :</h3>
-                        <div className="">
-                          <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value) } min={1} max={(singleProduct?.quantity ?? 0) - (singleProduct?.sold ?? 0)} style={{width:"70px"}} className="form-control" />
-                        </div>
-                        <div className="d-flex align-items-center gap-30 ms-5">
+                       {
+                        alreadyAdded === false && 
+                        <>
+                          <h3 className="product-heading">Quantity :</h3>
+                          <div className="">
+                            <input 
+                              type="number" 
+                              value={quantity} 
+                              onChange={(e) => setQuantity(e.target.value) } 
+                              min={1} 
+                              max={(singleProduct?.quantity ?? 0) - (singleProduct?.sold ?? 0)} 
+                              style={{width:"70px"}} 
+                              className="form-control" 
+                            />
+                          </div>
+                        </>
+                       }
+                        <div className={alreadyAdded ? "ms-0" : "d-flex align-items-center gap-30 ms-5"}>
                           <button 
                             className="button border-0" 
-                            type="button" 
+                            type="button"
                             // data-bs-toggle="modal" 
                             // data-bs-target="#staticBackdrop" 
-                            onClick={() => {uploadCart()}}
+                            onClick={() => {alreadyAdded ? navigate("/cart") : uploadCart()}}
                           >
-                            Add to Cart
+                            {
+                              alreadyAdded ? "Go to Cart" : "Add to Cart" 
+                            }
                           </button>
-                          <button className="signup button" >
+                         {/* <button className="signup button" >
                             Buy It Now
-                          </button>
+                          </button>*/}
                         </div>
                       </div>
                       <div className="d-flex align-items-center gap-15">

@@ -26,11 +26,17 @@ const addToCart = async(data) => {
 	return response.data.data;
 }
 
+const removeProductFromCart = async(data) => {
+	const response = await api.post('products/remove-cart',data);
+	return response.data.data;
+}
+
 const authService = {
 	register,
 	login,
 	getWishlist,
-	addToCart
+	addToCart,
+	removeProductFromCart
 }
 
 export default authService;

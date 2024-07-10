@@ -6,6 +6,8 @@ import {Link} from "react-router-dom";
 import Container from "../components/Container";
 import { getCart } from '../features/product/productSlice';
 import {useDispatch, useSelector} from 'react-redux'
+import { removeProductFromCart, reset } from '../features/auth/authSlice';
+
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -17,6 +19,13 @@ const Cart = () => {
     };
     getUserCart()
   }, []);
+
+  const removeProduct = (item) => {
+    dispatch(removeProductFromCart({product: item?.product?.id, color: item?.color?.id }))
+    setTimeout(() => {
+      dispatch(getCart());
+    },100)
+  }
   return (
     <>
       <Meta title="E-Commerce | Cart" />
@@ -61,10 +70,10 @@ const Cart = () => {
                         </div>
                         <div className="cart-col-3 d-flex align-items-center gap-15">
                           <div>
-                            <input type="number" value={item?.quantity} className="form-control" name="" id="" min={1} max={10} />
+                            <input type="number" defaultValue={item?.quantity} className="form-control" name="" id="" min={1} max={item?.product?.quantity - item?.product?.sold} />
                           </div>
                           <div>
-                            <AiFillDelete className="text-danger"/>
+                            <AiFillDelete style={{cursor: 'pointer'}} onClick={() => {removeProduct(item)}} className="text-danger"/>
                           </div>
                         </div>
                         <div className="cart-col-4">
