@@ -23,11 +23,17 @@ const addToWishlist = async(prodId) => {
 	return response.data.data;
 }
 
+const updateProductQuantity = async(data) => {
+	const response = await api.post('products/update/cart/quantity',data);
+	return response.data.data;
+}
+
 const productService = {
 	getProducts,
 	getProduct,
 	addToWishlist,
-	getCart
+	getCart,
+	updateProductQuantity
 }
 
 export default productService;

@@ -4,7 +4,7 @@ import Meta from "../components/Meta";
 import {AiFillDelete} from "react-icons/ai";
 import {Link} from "react-router-dom";
 import Container from "../components/Container";
-import { getCart } from '../features/product/productSlice';
+import { getCart, updateProductQuantity } from '../features/product/productSlice';
 import {useDispatch, useSelector} from 'react-redux'
 import { removeProductFromCart, reset } from '../features/auth/authSlice';
 
@@ -22,6 +22,13 @@ const Cart = () => {
 
   const removeProduct = (item) => {
     dispatch(removeProductFromCart({product: item?.product?.id, color: item?.color?.id }))
+    setTimeout(() => {
+      dispatch(getCart());
+    },100)
+  }
+
+  const updateQty = (e,item) => {
+    dispatch(updateProductQuantity({product: item?.product?.id, color: item?.color?.id, quantity: e}))
     setTimeout(() => {
       dispatch(getCart());
     },100)
@@ -70,7 +77,16 @@ const Cart = () => {
                         </div>
                         <div className="cart-col-3 d-flex align-items-center gap-15">
                           <div>
-                            <input type="number" defaultValue={item?.quantity} className="form-control" name="" id="" min={1} max={item?.product?.quantity - item?.product?.sold} />
+                            <input 
+                              type="number" 
+                              defaultValue={item?.quantity} 
+                              className="form-control" 
+                              name="" 
+                              id="" 
+                              min={1} 
+                              max={item?.product?.quantity - item?.product?.sold} 
+                              onChange={(e) => updateQty(e.target.value, item) } 
+                            />
                           </div>
                           <div>
                             <AiFillDelete style={{cursor: 'pointer'}} onClick={() => {removeProduct(item)}} className="text-danger"/>
