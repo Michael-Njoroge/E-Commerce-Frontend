@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { NavLink, Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import compare from "../images/compare.svg";
@@ -6,9 +6,19 @@ import wishlist from "../images/wishlist.svg";
 import user from "../images/user.svg";
 import cart from "../images/cart.svg";
 import menu from "../images/menu.svg";
-
+import {useDispatch, useSelector} from 'react-redux'
+import { getCart } from '../features/product/productSlice';
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const cartState = useSelector((state) => state.product.userCart);
+
+  console.log("cartState",cartState)
+
+  useEffect(() => {
+    dispatch(getCart());
+  }, []);
+
   return (
     <>
       <header className="header-top-strip py-3">
@@ -97,8 +107,8 @@ const Header = () => {
                   >
                     <img src={cart} alt="cart"></img>
                     <div className="d-flex flex-column gap-10">
-                      <span className="badge bg-white text-dark">0</span>
-                      <p className="mb-0">$ 500</p>
+                      <span className="badge bg-white text-dark">{cartState?.products.length}</span>
+                      <p className="mb-0">$ {cartState?.cartTotal}</p>
                     </div>
                   </Link>
                 </div>
