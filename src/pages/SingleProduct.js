@@ -24,7 +24,7 @@ const SingleProduct = () => {
   const [quantity, setQuantity] = useState(1);
 
   const getProductId = location.pathname.split("/")[2];
-  const cartState = useSelector((state) => state.product.userCart.products);
+  const cartState = useSelector((state) => state.product?.userCart?.products);
   const productState = useSelector((state) =>state.product);
   const { singleProduct } = productState;
 
@@ -34,11 +34,13 @@ const SingleProduct = () => {
   },[getProductId]);
 
   useEffect(() => {
+ if (cartState) {
     for (let i = 0; i < cartState.length; i++) {
       if (getProductId === cartState[i]?.product?.id) {
         setAlreadyAdded(true)
       }
     }
+  }
   })
 
   const addToWish = (id) => {
