@@ -23,6 +23,7 @@ import ShippingPolicy from "./pages/ShippingPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PaymentSuccess from "./components/PaymentSuccess";
 import {PrivateRoutes} from "./routing/PrivateRoutes";
+import {OpenRoutes} from "./routing/OpenRoutes";
 
 function App() {
   return (
@@ -42,14 +43,14 @@ function App() {
             <Route path="compare-products" element={<CompareProducts />} />
             <Route path="wishlist" element={<PrivateRoutes><Wishlist /></PrivateRoutes>} />
             <Route path="login" element={<Login />} />
-            <Route path="signup" element={<Signup />} />
+            <Route path="signup" element={<OpenRoutes><Signup /></OpenRoutes>} />
             <Route path="forgot-password" element={<ForgotPassword />} />
             <Route path="reset-password" element={<ResetPassword />} />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
             <Route path="refund-policy" element={<RefundPolicy />} />
             <Route path="shipping-policy" element={<ShippingPolicy />} />
             <Route path="terms-and-conditions" element={<TermsAndConditions />} />
-            <Route path="checkout-success" element={<PrivateRoutes><PaymentSuccess successMessage="Your payment was successful!" /></PrivateRoutes>} />
+            <Route path="checkout-success" element={<OpenRoutes><PaymentSuccess successMessage="Your payment was successful!" /></OpenRoutes>} />
           </Route>
         </Routes>
       </BrowserRouter>
