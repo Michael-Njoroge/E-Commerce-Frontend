@@ -22,6 +22,7 @@ import RefundPolicy from "./pages/RefundPolicy";
 import ShippingPolicy from "./pages/ShippingPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PaymentSuccess from "./components/PaymentSuccess";
+import {PrivateRoutes} from "./routing/PrivateRoutes";
 
 function App() {
   return (
@@ -32,14 +33,14 @@ function App() {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="checkout" element={<Checkout />} />
+            <Route path="cart" element={<PrivateRoutes><Cart /></PrivateRoutes>} />
+            <Route path="checkout" element={<PrivateRoutes><Checkout /></PrivateRoutes>} />
             <Route path="product" element={<OurStore />} />
             <Route path="blogs" element={<Blogs />} />
             <Route path="blog/:id" element={<SingleBlog />} />
             <Route path="product/:id" element={<SingleProduct />} />
             <Route path="compare-products" element={<CompareProducts />} />
-            <Route path="wishlist" element={<Wishlist />} />
+            <Route path="wishlist" element={<PrivateRoutes><Wishlist /></PrivateRoutes>} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
             <Route path="forgot-password" element={<ForgotPassword />} />
@@ -48,7 +49,7 @@ function App() {
             <Route path="refund-policy" element={<RefundPolicy />} />
             <Route path="shipping-policy" element={<ShippingPolicy />} />
             <Route path="terms-and-conditions" element={<TermsAndConditions />} />
-            <Route path="checkout-success" element={<PaymentSuccess successMessage="Your payment was successful!" />} />
+            <Route path="checkout-success" element={<PrivateRoutes><PaymentSuccess successMessage="Your payment was successful!" /></PrivateRoutes>} />
           </Route>
         </Routes>
       </BrowserRouter>
