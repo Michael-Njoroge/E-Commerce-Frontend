@@ -841,4 +841,17 @@ footer .input-group-text {
   font-size: 16px;
   color: var(--color-777777);
 }
+.bg {
+  background-color: #ffc72c;
+  border-color: #ffd98e #ffbe3d #de9300;
+}
+
+.bg:hover {
+  background-color: #f7c027;
+}
+
+.tick-img{
+  width: 120px;
+  height: 120px;
+}
 /*Shipping page End*/

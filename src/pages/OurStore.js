@@ -11,7 +11,7 @@ import {useDispatch, useSelector} from 'react-redux'
 const OurStore = () => {
   const dispatch = useDispatch();
   const productState = useSelector((state) => state.product.products);
-  const [grid, setGrid] = useState("");
+  const [grid, setGrid] = useState(4);
 
   const getAllProducts = () => {
     dispatch(getProducts());

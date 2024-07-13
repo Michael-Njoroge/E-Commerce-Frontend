@@ -44,9 +44,9 @@ export const removeProductFromCart = createAsyncThunk('product/remove-cart', asy
   }
 });
 
-export const createOrder = createAsyncThunk('product/create-order', async(data,thunkApi) => {
+export const applyCoupon = createAsyncThunk('cart/apply-coupon', async(data,thunkApi) => {
   try{
-    return await authService.createOrder(data)
+    return await authService.applyCoupon(data)
   }catch(error){
     return thunkApi.rejectWithValue(error);
   }
@@ -166,21 +166,26 @@ export const authSlice = createSlice({
         state.user =  null;
         state.message = action.error;
       })
-       .addCase(createOrder.pending, (state) => {
+       .addCase(applyCoupon.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(createOrder.fulfilled, (state, action) => {
+      .addCase(applyCoupon.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.orders = action.payload;
-           toast.success("Order created successfully");
+        state.discount = action.payload;
+        if (state.isSuccess === true) {
+          toast.success("Discount applied successfully");
+        }
       })
-      .addCase(createOrder.rejected, (state, action) => {
+      .addCase(applyCoupon.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
         state.user =  null;
         state.message = action.error;
+        if (state.isSuccess === false) {
+          toast.error("Provide valid coupon");
+        }
       });
   }
 });

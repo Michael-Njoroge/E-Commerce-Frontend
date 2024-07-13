@@ -146,7 +146,7 @@ const SingleProduct = () => {
                         <>
                           <div className="d-flex flex-column gap-10 mt-2 mb-3">
                             <h3 className="product-heading">Color :</h3>
-                            <Colors setColor={setColor} colorData={singleProduct?.colors}/>
+                            <Colors setColor={setColor} colorData={singleProduct?.colors} selectedColor={color}/>
                           </div>
                         </>
                        }

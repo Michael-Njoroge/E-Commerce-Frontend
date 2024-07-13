@@ -107,8 +107,8 @@ const Header = () => {
                   >
                     <img src={cart} alt="cart"></img>
                     <div className="d-flex flex-column gap-10">
-                      <span className="badge bg-white text-dark">{cartState?.products.length}</span>
-                      <p className="mb-0">$ {cartState?.cartTotal}</p>
+                      <span className="badge bg-white text-dark">{cartState?.products.length ? cartState?.products.length : 0}</span>
+                      <p className="mb-0">$ {cartState?.cartTotal ? cartState?.cartTotal : 0}</p>
                     </div>
                   </Link>
                 </div>

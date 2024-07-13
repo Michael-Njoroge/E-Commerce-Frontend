@@ -31,8 +31,9 @@ const removeProductFromCart = async(data) => {
 	return response.data.data;
 }
 
-const createOrder = async(data) => {
-	const response = await api.post('products/store/orders',data);
+const applyCoupon = async(data) => {
+	// console.log(data)
+	const response = await api.post('cart/apply-coupon',data );
 	return response.data.data;
 }
 
@@ -42,7 +43,7 @@ const authService = {
 	getWishlist,
 	addToCart,
 	removeProductFromCart,
-	createOrder
+	applyCoupon
 }
 
 export default authService;

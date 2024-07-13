@@ -21,6 +21,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import ShippingPolicy from "./pages/ShippingPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
+import PaymentSuccess from "./components/PaymentSuccess";
 
 function App() {
   return (
@@ -46,10 +47,8 @@ function App() {
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
             <Route path="refund-policy" element={<RefundPolicy />} />
             <Route path="shipping-policy" element={<ShippingPolicy />} />
-            <Route
-              path="terms-and-conditions"
-              element={<TermsAndConditions />}
-            />
+            <Route path="terms-and-conditions" element={<TermsAndConditions />} />
+            <Route path="checkout-success" element={<PaymentSuccess successMessage="Your payment was successful!" />} />
           </Route>
         </Routes>
       </BrowserRouter>
