@@ -4,6 +4,7 @@ import Meta from "../components/Meta";
 import Container from "../components/Container";
 import { useDispatch, useSelector } from 'react-redux';
 import { getWishlist } from '../features/auth/authSlice';
+import { Link } from "react-router-dom";
 import { addToWishlist } from '../features/product/productSlice';
 
 const Wishlist = () => {
@@ -57,7 +58,9 @@ const Wishlist = () => {
                       />
                     </div>
                     <div className="py-3 px-3">
+                    <Link to={`/product/${item?.id}`} className="text-dark border-0 bg-transparent underline-on-hover">
                       <h5 className="title">{item?.title}</h5>
+                    </Link>
                       <h6 className="price">$ {item?.price}</h6>
                     </div>
                 </div>

@@ -1,29 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactStars from "react-rating-stars-component";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import productcompare from "../images/prodcompare.svg";
 import wish from "../images/wish.svg";
+import addedWish from "../images/wish-black.svg";
 import addcart from "../images/add-cart.svg";
 import view from "../images/view.svg";
 import headphone1 from "../images/headphone-1.avif";
 import watch6 from "../images/watch6.jpg";
 import { addToWishlist } from '../features/product/productSlice';
+import { getWishlist } from '../features/auth/authSlice';
 import {useDispatch, useSelector} from 'react-redux'
 
 
 const ProductCard = (props) => {
   const { grid, data } = props;
+  const [alreadyAdded, setAlreadyAdded] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let location = useLocation();
+  const wishlistState = useSelector((state) =>state?.auth?.get_wishlist);
+  const isProductInWishlist = (productId) => {
+    return wishlistState?.some((item) => item.id === productId);
+  };
 
   const addToWish = (id) => {
     dispatch(addToWishlist(id))
+    setTimeout(()=>{
+       dispatch(getWishlist());
+     },100)
   }
   return (
     <>
     {
       data?.map((item, index) => {
+        const alreadyAdded = isProductInWishlist(item.id);
         return (
           <div
           key={index}
@@ -32,7 +44,7 @@ const ProductCard = (props) => {
             <div  className="product-card position-relative">
               <div className="wishlist-icon position-absolute">
                 <button className="border-0 bg-transparent" onClick={(e) => {addToWish(item?.id)}}>
-                  <img src={wish} alt="wish" />
+                   <img src={alreadyAdded ? addedWish : wish} alt="wish" width="18px" height ="18px"/>
                 </button>
               </div>
               <div className="product-image">

@@ -34,13 +34,13 @@ const SingleProduct = () => {
   },[getProductId]);
 
   useEffect(() => {
- if (cartState) {
-    for (let i = 0; i < cartState.length; i++) {
-      if (getProductId === cartState[i]?.product?.id) {
-        setAlreadyAdded(true)
+   if (cartState) {
+      for (let i = 0; i < cartState.length; i++) {
+        if (getProductId === cartState[i]?.product?.id) {
+          setAlreadyAdded(true)
+        }
       }
     }
-  }
   })
 
   const addToWish = (id) => {

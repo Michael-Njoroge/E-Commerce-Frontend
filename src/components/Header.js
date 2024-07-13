@@ -12,8 +12,7 @@ import { getCart } from '../features/product/productSlice';
 const Header = () => {
   const dispatch = useDispatch();
   const cartState = useSelector((state) => state.product.userCart);
-
-  console.log("cartState",cartState)
+  const authState = useSelector((state) => state.auth.user);
 
   useEffect(() => {
     dispatch(getCart());
@@ -90,14 +89,22 @@ const Header = () => {
                 </div>
                 <div>
                   <Link
-                    to="/login"
+                    to={authState === null ? "/login" : "" }
                     className="d-flex align-items-center gap-10 text-white"
                   >
                     <img src={user} alt="user"></img>
-                    <p className="mb-0">
+                    {authState === null && (
+                      <p className="mb-0">
                       Log In <br />
                       My Account
                     </p>
+                    )} 
+                    {authState !== null && (
+                      <p className="mb-0">
+                      Welcome <br />
+                      {authState?.firstname}
+                    </p>
+                    )} 
                   </Link>
                 </div>
                 <div>
