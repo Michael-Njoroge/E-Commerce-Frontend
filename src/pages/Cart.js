@@ -12,6 +12,7 @@ import { removeProductFromCart, reset } from '../features/auth/authSlice';
 const Cart = () => {
   const dispatch = useDispatch();
   const cartState = useSelector((state) => state.product.userCart);
+  const hasProducts = cartState?.products?.length > 0;
 
   useEffect(() => {
     const getUserCart = () => {
@@ -40,19 +41,18 @@ const Cart = () => {
       <Container class1="cart-wrapper home-wrapper-2 py-5">
           <div className="row">
             <div className="col-12">
+            {hasProducts ? (
               <div className="cart-header py-3 d-flex align-items-center justify-content-between">
               	<h4 className="cart-col-1">Product</h4>
               	<h4 className="cart-col-2">Price</h4>
               	<h4 className="cart-col-3">Quantity</h4>
               	<h4 className="cart-col-4">Total</h4>
               </div>
-        {/*      {
-                (!cartState || cartState.length === 0) && (
-                  <div className="text-center fs-3">
-                    Your cart is empty
-                  </div>
-                )
-              }*/}
+              ) : (
+              <div className="text-center fs-3">
+                Your cart is currently empty
+              </div>
+            )}         
               {
                 cartState && cartState?.products.map((item, index) => {
                   {/*{console.log(item)}*/}
@@ -101,16 +101,20 @@ const Cart = () => {
               }
               
             </div>
-            <div className="col-12 py-2 mt-4">
-              <div className="d-flex justify-content-between align-items-baseline">
-                <Link className="button" to="/product">Continue To Shopping</Link>
+          <div className="col-12 py-2 mt-4">
+            <div className={hasProducts ? "d-flex justify-content-between align-items-baseline" : "d-flex justify-content-center align-items-center"}>
+              <Link className="button" to="/product">{hasProducts ? "Continue To Shopping" : "Go Back To Store"}</Link>
+
+              {hasProducts && (
                 <div className="d-flex align-items-end flex-column">
                   <h4>Sub Total : $ {cartState?.cartTotal ? cartState?.cartTotal : 0}</h4>
                   <p>Taxes and shipping calculated at checkout</p>
                   <Link className="button" to="/checkout">Checkout</Link>
                 </div>
-              </div>
+              )}
             </div>
+          </div>
+
           </div>
       </Container>
     </>
