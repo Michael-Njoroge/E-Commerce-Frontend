@@ -1,5 +1,5 @@
-import React, {useEffect} from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import compare from "../images/compare.svg";
 import wishlist from "../images/wishlist.svg";
@@ -8,15 +8,30 @@ import cart from "../images/cart.svg";
 import menu from "../images/menu.svg";
 import {useDispatch, useSelector} from 'react-redux'
 import { getCart } from '../features/product/productSlice';
+import { Typeahead } from 'react-bootstrap-typeahead';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const cartState = useSelector((state) => state.product.userCart);
-  const authState = useSelector((state) => state.auth.user);
+  const navigate = useNavigate()
+  const [paginate, setPaginate] = useState(true);
+  const [productOpt, setProductOpt] = useState([]);
+  const cartState = useSelector((state) => state?.product?.userCart);
+  const productState = useSelector((state) => state?.product?.products);
+  const authState = useSelector((state) => state?.auth?.user);
 
   useEffect(() => {
     dispatch(getCart());
   }, [dispatch]);
+
+  useEffect(() => {
+    let data = [];
+    for (var i = 0; i < productState.length; i++) {
+      const element = productState[i];
+      data.push({id: i, product: element?.id, name: element?.title})
+    }
+    setProductOpt(data)
+  }, [productState]);
 
   const handleLogout = () => {
     localStorage.clear()
@@ -54,13 +69,17 @@ const Header = () => {
             </div>
             <div className="col-5">
               <div className="input-group">
-                <input
-                  type="text"
-                  className="form-control py-2"
-                  placeholder="Search Product Here..."
-                  aria-label="Search Product Here..."
-                  aria-describedby="basic-addon2"
-                />
+                  <Typeahead
+                    id="pagination-example"
+                    onPaginate={() => console.log('Results paginated')}
+                    options={productOpt}
+                    paginate={paginate}
+                    labelKey={"name"}
+                    onChange={(selected) => {
+                      navigate(`/product/${selected[0].product}`)
+                    }}
+                    placeholder="Search for products here..."
+                  />
                 <span className="input-group-text p-3" id="basic-addon2">
                   <BsSearch className="fs-6" />
                 </span>
