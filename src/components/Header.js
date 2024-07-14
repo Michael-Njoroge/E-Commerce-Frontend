@@ -16,7 +16,7 @@ const Header = () => {
 
   useEffect(() => {
     dispatch(getCart());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -89,7 +89,7 @@ const Header = () => {
                 </div>
                 <div>
                   <Link
-                    to={authState === null ? "/login" : "" }
+                    to={authState === null ? "/login" : "/my-profile" }
                     className="d-flex align-items-center gap-10 text-white"
                   >
                     <img src={user} alt="user"></img>

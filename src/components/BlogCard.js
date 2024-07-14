@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const BlogCard = (props) => {
   const {id, title, description, image, date} = props
-  console.log('description',description)
   return (
     <>
       <div className="blog-card">

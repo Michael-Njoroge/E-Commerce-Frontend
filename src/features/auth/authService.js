@@ -42,6 +42,11 @@ const getMyOrders = async() => {
 	return response.data.data;
 }
 
+const updateProfile = async(data) => {
+	const response = await api.put('users/update',data);
+	return response.data.data;
+}
+
 const authService = {
 	register,
 	login,
@@ -49,7 +54,8 @@ const authService = {
 	addToCart,
 	removeProductFromCart,
 	applyCoupon,
-	getMyOrders
+	getMyOrders,
+	updateProfile
 }
 
 export default authService;

@@ -5,18 +5,17 @@ import Meta from "../components/Meta";
 import { getMyOrders } from '../features/auth/authSlice';
 import {useDispatch, useSelector} from 'react-redux'
 
-const Component = () => {
+const Orders = () => {
   const dispatch = useDispatch();
   const orderState = useSelector((state) => state.auth.myOrders);
-  console.log("orderState",orderState);
 
   useEffect(() => {
      dispatch(getMyOrders());
-  }, []);
+  }, [dispatch]);
 
     return (
     	<>
-		    <Meta title="E-Commerce | My Orders" />
+		    <Meta title="E-Commerce | Orders" />
 		    <BreadCrumb title="My Orders" />
 	        <Container class1="cart-wrapper home-wrapper-2 py-5">
 	        	<div className="row">
@@ -83,8 +82,8 @@ const Component = () => {
 											            				<div className="col-3">
 											            					<p>
 											            						<ul className="colors ps-0">
-												                                  <li style={{backgroundColor:product?.color?.title}}></li>
-												                                </ul>
+												                        <li style={{backgroundColor:product?.color?.title}}></li>
+												                      </ul>
 											            					</p>
 											            				</div>
 											            			</div>
@@ -106,4 +105,4 @@ const Component = () => {
     );
 };
 
-export default Component;
+export default Orders;
