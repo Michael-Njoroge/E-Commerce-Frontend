@@ -76,6 +76,14 @@ export const forgotPassword = createAsyncThunk('users/forgot-password', async(da
   }
 });
 
+export const resetPassword = createAsyncThunk('users/reset-password', async(data,thunkApi) => {
+  try{
+    return await authService.resetPassword(data)
+  }catch(error){
+    return thunkApi.rejectWithValue(error);
+  }
+});
+
 const customer = localStorage.getItem('customer') ? JSON.parse(localStorage.getItem('customer')) : null;
 
 const initialState = {
@@ -94,6 +102,7 @@ export const authSlice = createSlice({
       state.createdUser = null;
       state.updatedUser = null;
       state.removedProduct = null;
+      state.forgot_password = null;
       state.isError = false;
       state.isLoading = false;
       state.isSuccess = false;
@@ -240,20 +249,34 @@ export const authSlice = createSlice({
           toast.error("Failed to update");
         }
       })
-        .addCase(forgotPassword.pending, (state) => {
+      .addCase(forgotPassword.pending, (state) => {
         state.isLoading = true
       })
       .addCase(forgotPassword.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.forgotPassword = action.payload;
+        state.forgot_password = action?.payload?.message;
       })
       .addCase(forgotPassword.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
         state.message = action.error;
-      });;
+      })
+      .addCase(resetPassword.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(resetPassword.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.reset_password = action.payload;
+      })
+      .addCase(resetPassword.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      });
   }
 });
 

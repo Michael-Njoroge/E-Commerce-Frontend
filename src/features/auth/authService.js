@@ -49,6 +49,11 @@ const updateProfile = async(data) => {
 
 const forgotPassword = async(data) => {
 	const response = await api.post('users/forgot-password',data);
+	return response.data;
+}
+
+const resetPassword = async(data) => {
+	const response = await api.post('users/reset-password',data);
 	return response.data.data;
 }
 
@@ -61,7 +66,8 @@ const authService = {
 	applyCoupon,
 	getMyOrders,
 	updateProfile,
-	forgotPassword
+	forgotPassword,
+	resetPassword
 }
 
 export default authService;
