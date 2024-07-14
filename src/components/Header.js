@@ -18,6 +18,11 @@ const Header = () => {
     dispatch(getCart());
   }, [dispatch]);
 
+  const handleLogout = () => {
+    localStorage.clear()
+    window.location.reload();
+  }
+
   return (
     <>
       <header className="header-top-strip py-3">
@@ -89,8 +94,12 @@ const Header = () => {
                 </div>
                 <div>
                   <Link
-                    to={authState === null ? "/login" : "/my-profile" }
+                    to={authState === null ? "/login" : "#"}
                     className="d-flex align-items-center gap-10 text-white"
+                    id={authState !== null ? "navbarDropdown" : undefined}
+                    role={authState !== null ? "button" : undefined}
+                    data-bs-toggle={authState !== null ? "dropdown" : undefined}
+                    aria-expanded={authState !== null ? "false" : undefined}
                   >
                     <img src={user} alt="user"></img>
                     {authState === null && (
@@ -106,6 +115,11 @@ const Header = () => {
                     </p>
                     )} 
                   </Link>
+                  <div className="dropdown-menu animate slideIn mt-3" aria-labelledby="navbarDropdown">
+                    <Link to={"/my-profile"} className="dropdown-item">Profile/Account</Link>
+                    <div className="dropdown-divider"></div>
+                    <button className="dropdown-item border-0 bg-transparent" type="button" onClick={()=>handleLogout()}>Logout</button>
+                  </div>
                 </div>
                 <div>
                   <Link
@@ -144,7 +158,7 @@ const Header = () => {
                       </span>
                     </button>
                     <ul
-                      className="dropdown-menu"
+                      className="dropdown-menu mt-2"
                       aria-labelledby="dropdownMenuButton1"
                     >
                       <li>
@@ -169,7 +183,9 @@ const Header = () => {
                   <div className="d-flex align-items-center gap-15">
                     <NavLink to="/">Home</NavLink>
                     <NavLink to="/product">Our Store</NavLink>
-                    <NavLink to="/my-orders">My Orders</NavLink>
+                    {authState !== null &&
+                      <NavLink to="/my-orders">Orders</NavLink>
+                    }
                     <NavLink to="/blogs">Blogs</NavLink>
                     <NavLink to="/contact">Contact</NavLink>
                   </div>
