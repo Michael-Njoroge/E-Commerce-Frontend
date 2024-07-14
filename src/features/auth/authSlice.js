@@ -103,10 +103,11 @@ export const authSlice = createSlice({
       state.updatedUser = null;
       state.removedProduct = null;
       state.forgot_password = null;
+      state.reset_password = null;
       state.isError = false;
       state.isLoading = false;
       state.isSuccess = false;
-      state.message = "";
+      state.message = null;
     },
   },
     extraReducers: (builder) => {
@@ -147,7 +148,9 @@ export const authSlice = createSlice({
         state.isError = true;
         state.isSuccess = false;
         state.user =  null;
-        state.message = action.error;
+        if (state.isSuccess === false) {
+          state.message = "Invalid Credentials, please try again";
+        }
       })
       .addCase(getWishlist.pending, (state) => {
         state.isLoading = true
@@ -236,7 +239,7 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.user = action.payload;
-         if (state.isSuccess === true) {
+        if (state.isSuccess === true) {
           toast.success("Profile updated successfully");
         }
       })
@@ -269,13 +272,16 @@ export const authSlice = createSlice({
       .addCase(resetPassword.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.reset_password = action.payload;
+        state.reset_password = action?.payload?.message;
       })
       .addCase(resetPassword.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
         state.message = action.error;
+        if (state.isSuccess === false) {
+          state.message = "Invalid or expired link, please provide a valid link";
+        }
       });
   }
 });

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import { Link, useNavigate} from "react-router-dom";
@@ -7,7 +7,7 @@ import CustomInput from "../components/CustomInput";
 import {useDispatch, useSelector} from 'react-redux'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { login } from '../features/auth/authSlice';
+import { login, reset } from '../features/auth/authSlice';
 
 
 let validationSchema = Yup.object({
@@ -18,6 +18,8 @@ let validationSchema = Yup.object({
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const error = useSelector((state) => state?.auth?.message);
 
   const formik = useFormik({
     initialValues: {
@@ -25,12 +27,26 @@ const Login = () => {
       password: '',
     },
          validationSchema: validationSchema,
-         onSubmit: values => {
-            dispatch(login(values))
-         },
+         onSubmit: async (values) => {
+            setLoading(true);
+            try {
+              await dispatch(login(values)).unwrap();
+              formik.resetForm();
+              setTimeout(() => {
+                dispatch(reset());
+              }, 5000);
+            } catch (error) {
+              setTimeout(() => {
+                dispatch(reset());
+              }, 5000);
+              console.warning("Error login:", error);
+            } finally {
+              setLoading(false);
+            }
+             },
     });
 
-  const {user,isError,isLoading,isSuccess,message} = useSelector((state)=>state.auth)
+  const {user,isError,isLoading,isSuccess} = useSelector((state)=>state.auth)
 
     useEffect(() => {
         if (!user == null || isSuccess) {
@@ -38,7 +54,7 @@ const Login = () => {
         }else{
             navigate("")
         }
-    },[user,isError,isLoading,isSuccess]);
+    },[user,isError,isLoading,isSuccess,navigate]);
 
   return (
     <>
@@ -50,6 +66,12 @@ const Login = () => {
             <div className="col-12">
               <div className="auth-card">
                 <h3 className="text-center mb-3">Login</h3>
+                {
+                  error ? 
+                  (<p className="mt-2 mb-3 text-center text-danger">
+                    {error}
+                  </p>) : ""
+                }
                 <form action="" onSubmit={formik.handleSubmit} className="d-flex flex-column gap-15">
                    <CustomInput 
                     type="text" 
@@ -82,9 +104,18 @@ const Login = () => {
                     <Link to="/forgot-password">Forgot Password?</Link>
                     <div className="mt-3 d-flex justify-content-center gap-15 align-items-center">
                       <button className="button border-0" type="submit">
-                        Login
+                        {loading ? (
+                              <div className="d-flex gap-1">
+                                <div className="spinner-border spinner-border-sm" role="status">
+                                  <span className="visually-hidden">Loading...</span>
+                                </div>
+                                Please wait...
+                              </div>
+                              ) : 
+                             'Login'
+                            }
                       </button>
-                      <Link className="signup button" to="/signup">
+                      <Link className="signup button" hidden={loading} to="/signup">
                         Signup
                       </Link>
                     </div>

@@ -81,14 +81,16 @@ const ForgotPassword = () => {
                   </div>
                     <div className="mt-3 d-flex justify-content-center gap-15 align-items-center">
                       <button className="button border-0" type="submit" disabled={loading}>
-                         {loading ? (
+                        {loading ? (
                           <div className="d-flex gap-1">
                             <div className="spinner-border spinner-border-sm" role="status">
                               <span className="visually-hidden">Loading...</span>
                             </div>
                             Please wait...
                           </div>
-                          ) : 'Submit'}
+                          ) : 
+                         'Submit'
+                        }
                       </button>
                       <Link className="button text-white bg-danger border-0" to="/login" hidden={loading}>Cancel</Link>
                     </div>

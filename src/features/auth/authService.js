@@ -54,7 +54,7 @@ const forgotPassword = async(data) => {
 
 const resetPassword = async(data) => {
 	const response = await api.post('users/reset-password',data);
-	return response.data.data;
+	return response.data;
 }
 
 const authService = {
