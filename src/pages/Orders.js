@@ -70,7 +70,7 @@ const Component = () => {
 								            			{
 								            				item?.items.map((product,index) => {
 								            					return (
-								            						<div className="row py-3">
+								            						<div key={index} className="row py-3">
 											            				<div className="col-3">
 											            					<p className="text-white">{product?.product?.title}</p>
 											            				</div>
