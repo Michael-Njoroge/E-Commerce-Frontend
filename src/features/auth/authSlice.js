@@ -140,7 +140,10 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.user = action.payload;
         if(state.isSuccess === true){
-           toast.info("Welcome back");
+       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         }
       })
       .addCase(login.rejected, (state, action) => {

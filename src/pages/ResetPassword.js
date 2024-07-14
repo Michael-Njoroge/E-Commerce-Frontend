@@ -30,11 +30,11 @@ const ResetPassword = () => {
     initialValues: {
       password: '',
       password_confirmation: '',
+      email: email || '',
+      token: token || '',
     },
         validationSchema: validationSchema,
         onSubmit: async (values) => {
-          formik.setFieldValue('email', email);
-          formik.setFieldValue('token', token);
         setLoading(true);
         try {
           // alert(JSON.stringify(values))
