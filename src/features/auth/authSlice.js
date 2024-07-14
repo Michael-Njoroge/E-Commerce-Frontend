@@ -52,6 +52,14 @@ export const applyCoupon = createAsyncThunk('cart/apply-coupon', async(data,thun
   }
 });
 
+export const getMyOrders = createAsyncThunk('orders/get-orders', async(thunkApi) => {
+  try{
+    return await authService.getMyOrders()
+  }catch(error){
+    return thunkApi.rejectWithValue(error);
+  }
+});
+
 const customer = localStorage.getItem('customer') ? JSON.parse(localStorage.getItem('customer')) : null;
 
 const initialState = {
@@ -85,7 +93,6 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.createdUser = action.payload;
         if(state.isSuccess === true){
-           localStorage.setItem('token', action.payload.token);
            toast.info("Account created successfully");
         }
       })
@@ -106,7 +113,6 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.user = action.payload;
         if(state.isSuccess === true){
-           localStorage.setItem('token', action.payload.token);
            toast.info("Welcome back");
         }
       })
@@ -186,6 +192,21 @@ export const authSlice = createSlice({
         if (state.isSuccess === false) {
           toast.error("Provide valid coupon");
         }
+      })
+      .addCase(getMyOrders.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getMyOrders.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.myOrders = action.payload;
+      })
+      .addCase(getMyOrders.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.user =  null;
+        state.message = action.error;
       });
   }
 });

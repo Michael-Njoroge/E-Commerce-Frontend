@@ -37,13 +37,19 @@ const applyCoupon = async(data) => {
 	return response.data.data;
 }
 
+const getMyOrders = async() => {
+	const response = await api.get('user-orders');
+	return response.data.data;
+}
+
 const authService = {
 	register,
 	login,
 	getWishlist,
 	addToCart,
 	removeProductFromCart,
-	applyCoupon
+	applyCoupon,
+	getMyOrders
 }
 
 export default authService;

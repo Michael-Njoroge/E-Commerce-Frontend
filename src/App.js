@@ -10,6 +10,7 @@ import Blogs from "./pages/Blogs";
 import CompareProducts from "./pages/CompareProducts";
 import SingleBlog from "./pages/SingleBlog";
 import Cart from "./pages/Cart";
+import Orders from "./pages/Orders";
 import SingleProduct from "./pages/SingleProduct";
 import Checkout from "./pages/Checkout";
 import Wishlist from "./pages/Wishlist";
@@ -35,6 +36,7 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
             <Route path="cart" element={<PrivateRoutes><Cart /></PrivateRoutes>} />
+            <Route path="my-orders" element={<PrivateRoutes><Orders /></PrivateRoutes>} />
             <Route path="checkout" element={<PrivateRoutes><Checkout /></PrivateRoutes>} />
             <Route path="product" element={<OurStore />} />
             <Route path="blogs" element={<Blogs />} />
