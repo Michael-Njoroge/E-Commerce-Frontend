@@ -68,6 +68,14 @@ export const updateProfile = createAsyncThunk('users/update-profile', async(data
   }
 });
 
+export const forgotPassword = createAsyncThunk('users/forgot-password', async(data,thunkApi) => {
+  try{
+    return await authService.forgotPassword(data)
+  }catch(error){
+    return thunkApi.rejectWithValue(error);
+  }
+});
+
 const customer = localStorage.getItem('customer') ? JSON.parse(localStorage.getItem('customer')) : null;
 
 const initialState = {
@@ -231,7 +239,21 @@ export const authSlice = createSlice({
         if (state.isSuccess === false) {
           toast.error("Failed to update");
         }
-      });
+      })
+        .addCase(forgotPassword.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(forgotPassword.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.forgotPassword = action.payload;
+      })
+      .addCase(forgotPassword.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      });;
   }
 });
 
