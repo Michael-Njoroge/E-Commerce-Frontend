@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import productService from './productService'
 
 export const getProducts = createAsyncThunk('product/get-products', async(thunkApi) => {
@@ -43,6 +44,14 @@ export const updateProductQuantity = createAsyncThunk('product/update-quantity',
 	}
 });
 
+export const reviewProduct = createAsyncThunk('product/review-product', async(data,thunkApi) => {
+	try{
+		return await productService.reviewProduct(data)
+	}catch(error){
+		return thunkApi.rejectWithValue(error);
+	}
+});
+
 const initialState = {
 	products: [],
 	isError: false,
@@ -54,7 +63,15 @@ const initialState = {
 export const productSlice = createSlice({
 	name: "products",
 	initialState,
-	reducers: {},
+	reducers: {
+		reset: (state) => {
+	      state.reviewed_product = null;
+	      state.isError = false;
+	      state.isLoading = false;
+	      state.isSuccess = false;
+	      state.message = null;
+	    },
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(getProducts.pending, (state) => {
@@ -127,8 +144,26 @@ export const productSlice = createSlice({
 				state.isError = true;
 				state.isSuccess = false;
 				state.message =  action.error;
+			})
+			.addCase(reviewProduct.pending, (state) => {
+				state.isLoading = true
+			})
+			.addCase(reviewProduct.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.reviewed_product = action.payload;
+				if (state.isSuccess === true) {
+		          toast.success("Review submittted successfully");
+		        }
+			})
+			.addCase(reviewProduct.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.isSuccess = false;
+				state.message =  action.error;
 			});
 	}
 });
 
+export const {reset} = productSlice.actions
 export default productSlice.reducer

@@ -7,7 +7,6 @@ const getProducts = async() => {
 
 const getProduct = async(id) => {
 	const response = await api.get(`products/${id}`);
-	console.log('Product Service Response:', response.data);
 	return response.data.data;
 }
 
@@ -28,12 +27,18 @@ const updateProductQuantity = async(data) => {
 	return response.data.data;
 }
 
+const reviewProduct = async(data) => {
+	const response = await api.put('products/rate',data);
+	return response.data.data;
+}
+
 const productService = {
 	getProducts,
 	getProduct,
 	addToWishlist,
 	getCart,
-	updateProductQuantity
+	updateProductQuantity,
+	reviewProduct
 }
 
 export default productService;

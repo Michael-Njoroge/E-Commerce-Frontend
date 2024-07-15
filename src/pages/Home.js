@@ -1,10 +1,10 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import moment from 'moment';
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import BlogCard from "../components/BlogCard";
 import SpecialProducts from "../components/SpecialProducts";
-import PopularProduct from "../components/PopularProduct";
+import ProductCard from "../components/ProductCard";
 import Container from "../components/Container";
 import Meta from "../components/Meta";
 import {services} from "../utils/Data.js"
@@ -14,21 +14,23 @@ import { getBlogs } from '../features/blog/blogSlice';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const [popularProduct, setPopularProduct] = useState([]);
+  const [featuredProduct, setFeaturedProduct] = useState([]);
   const productState = useSelector((state) => state.product.products);
   const blogState = useSelector((state) => state.blog.blogs);
-
-  const getAllProducts = () => {
+  
+  useEffect(() => {
     dispatch(getProducts());
-  };
-
-  const getAllBlogs = () => {
     dispatch(getBlogs());
-  };
+  }, []);
 
   useEffect(() => {
-    getAllProducts()
-    getAllBlogs()
-  }, [getAllProducts,getAllBlogs]);
+    const popular = productState.filter(product => product?.tags === 'popular');
+    const featured = productState.filter(product => product?.tags === 'featured');
+    setPopularProduct(popular);
+    setFeaturedProduct(featured);
+  },[productState]);
+
   return (
     <>
     <Container class1='home-wrapper-1 py-5'>
@@ -202,13 +204,7 @@ const Home = () => {
               <h5 className="section-heading">Featured Collection</h5>
             </div>
             {
-              productState && productState.map((item,index) => {
-                if (item?.tags === "featured") {
-                  return (
-                  <PopularProduct key={index} item={item} />
-                  )
-              }
-              })
+             <ProductCard data={featuredProduct} />
             }
           </div>
       </Container>
@@ -311,13 +307,7 @@ const Home = () => {
               <h5 className="section-heading">Our Popular Products</h5>
             </div>
             {
-              productState && productState.map((item,index) => {
-                if (item?.tags === "popular") {
-                  return (
-                  <PopularProduct key={index} item={item} />
-                  )
-              }
-              })
+              <ProductCard data={popularProduct} />
             }
           </div>
       </Container>

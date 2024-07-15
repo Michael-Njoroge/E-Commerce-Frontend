@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import Container from "../components/Container";
@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {useNavigate} from "react-router-dom";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { register } from '../features/auth/authSlice';
+import { register, reset } from '../features/auth/authSlice';
 
 
 let validationSchema = Yup.object({
@@ -21,6 +21,8 @@ let validationSchema = Yup.object({
 const Signup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
 
   const formik = useFormik({
     initialValues: {
@@ -31,8 +33,23 @@ const Signup = () => {
       password: '',
     },
          validationSchema: validationSchema,
-         onSubmit: values => {
-            dispatch(register(values))
+         onSubmit: async (values) => {
+             setLoading(true);
+            try {
+              await dispatch(register(values)).unwrap();
+              formik.resetForm();
+              setTimeout(() => {
+                dispatch(reset());
+              }, 5000);
+            } catch (error) {
+              setTimeout(() => {
+                dispatch(reset());
+              }, 5000);
+              console.warning("Error register:", error);
+            } finally {
+              setLoading(false);
+            }
+            
          },
     });
 
@@ -129,7 +146,17 @@ const Signup = () => {
                   <div>
                     <div className="mt-3 d-flex justify-content-center gap-15 align-items-center">
                       <button className="button border-0">
-                        Create Account
+                       {loading ? (
+                          <div className="d-flex gap-1">
+                            <div className="spinner-border spinner-border-sm" role="status">
+                              <span className="visually-hidden">Loading...</span>
+                            </div>
+                            Please wait...
+                          </div>
+                          ) : 
+                         'Create Account'
+                        }
+                        
                       </button>
                     </div>
                   </div>

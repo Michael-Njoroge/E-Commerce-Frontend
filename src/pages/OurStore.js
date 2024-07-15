@@ -19,7 +19,7 @@ const OurStore = () => {
 
   useEffect(() => {
     getAllProducts()
-  }, [getAllProducts]);
+  }, []);
 
   return (
     <>

@@ -43,7 +43,7 @@ const Login = () => {
             } finally {
               setLoading(false);
             }
-             },
+        },
     });
 
   const {user,isError,isLoading,isSuccess} = useSelector((state)=>state.auth)
@@ -113,7 +113,7 @@ const Login = () => {
                               </div>
                               ) : 
                              'Login'
-                            }
+                        }
                       </button>
                       <Link className="signup button" hidden={loading} to="/signup">
                         Signup
