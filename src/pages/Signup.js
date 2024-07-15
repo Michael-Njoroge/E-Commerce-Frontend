@@ -36,7 +36,7 @@ const Signup = () => {
          },
     });
 
-  const {user,isError,isLoading,isSuccess,message} = useSelector((state)=>state.auth)
+  const {user,isError,isLoading,isSuccess} = useSelector((state)=>state.auth)
 
     useEffect(() => {
         if (!user == null || isSuccess) {
@@ -44,7 +44,7 @@ const Signup = () => {
         }else{
             navigate("")
         }
-    },[user,isError,isLoading,isSuccess]);
+    },[user,isError,isLoading,isSuccess,navigate]);
 
   return (
     <>

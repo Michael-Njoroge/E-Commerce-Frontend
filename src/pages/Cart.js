@@ -28,11 +28,15 @@ const Cart = () => {
     },100)
   }
 
-  const updateQty = (e,item) => {
-    dispatch(updateProductQuantity({product: item?.product?.id, color: item?.color?.id, quantity: e}))
-    setTimeout(() => {
-      dispatch(getCart());
-    },100)
+  const updateQty = async(e,item) => {
+    try {
+      await dispatch(updateProductQuantity({product: item?.product?.id, color: item?.color?.id, quantity: e}))
+      setTimeout(() => {
+        dispatch(getCart());
+      },100)
+    } catch (error) {
+      console.warning("Error updating quantity :", error);
+    }
   }
   return (
     <>

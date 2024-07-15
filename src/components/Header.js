@@ -75,6 +75,7 @@ const Header = () => {
                     options={productOpt}
                     paginate={paginate}
                     labelKey={"name"}
+                    minLength={2}
                     onChange={(selected) => {
                       navigate(`/product/${selected[0].product}`)
                     }}

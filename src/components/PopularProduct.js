@@ -5,16 +5,12 @@ import productcompare from "../images/prodcompare.svg";
 import wish from "../images/wish.svg";
 import addcart from "../images/add-cart.svg";
 import view from "../images/view.svg";
-import headphone1 from "../images/headphone-1.avif";
-import watch6 from "../images/watch6.jpg";
 import { addToWishlist } from '../features/product/productSlice';
 import {useDispatch} from 'react-redux'
 
 const PopularProduct = (props) => {
   const {item} = props
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  let location = useLocation();
 
   const addToWish = (id) => {
     dispatch(addToWishlist(id))

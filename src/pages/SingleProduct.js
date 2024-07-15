@@ -31,7 +31,7 @@ const SingleProduct = () => {
   useEffect(() => {
       dispatch(getProduct(getProductId))
       dispatch(getCart())
-  },[getProductId]);
+  },[getProductId, dispatch]);
 
   useEffect(() => {
    if (cartState) {
@@ -41,7 +41,7 @@ const SingleProduct = () => {
         }
       }
     }
-  })
+  },[getProductId, cartState])
 
   const addToWish = (id) => {
     dispatch(addToWishlist(id))

@@ -5,7 +5,7 @@ import Colors from "../components/Colors";
 import Meta from "../components/Meta";
 import ReactStars from "react-rating-stars-component";
 import Container from "../components/Container";
-import { getProducts, getProduct } from '../features/product/productSlice';
+import { getProducts } from '../features/product/productSlice';
 import {useDispatch, useSelector} from 'react-redux'
 
 const OurStore = () => {
@@ -19,7 +19,7 @@ const OurStore = () => {
 
   useEffect(() => {
     getAllProducts()
-  }, []);
+  }, [getAllProducts]);
 
   return (
     <>

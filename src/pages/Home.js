@@ -3,7 +3,6 @@ import moment from 'moment';
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import BlogCard from "../components/BlogCard";
-import ProductCard from "../components/ProductCard";
 import SpecialProducts from "../components/SpecialProducts";
 import PopularProduct from "../components/PopularProduct";
 import Container from "../components/Container";
@@ -29,7 +28,7 @@ const Home = () => {
   useEffect(() => {
     getAllProducts()
     getAllBlogs()
-  }, []);
+  }, [getAllProducts,getAllBlogs]);
   return (
     <>
     <Container class1='home-wrapper-1 py-5'>
