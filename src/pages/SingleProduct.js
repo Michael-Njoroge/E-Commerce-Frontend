@@ -13,7 +13,7 @@ import watch from "../images/watch.jpg";
 import { AiOutlineHeart } from "react-icons/ai";
 import Container from "../components/Container";
 import { toast } from 'react-toastify';
-import { getProduct, addToWishlist, getCart, reviewProduct, reset } from '../features/product/productSlice';
+import { getProduct, getProducts, addToWishlist, getCart, reviewProduct, reset } from '../features/product/productSlice';
 import { addToCart } from '../features/auth/authSlice';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -43,6 +43,7 @@ const SingleProduct = () => {
 
   useEffect(() => {
       dispatch(getProduct(getProductId))
+      dispatch(getProducts())
       dispatch(getCart())
   },[getProductId, dispatch]);
 
@@ -152,7 +153,7 @@ const SingleProduct = () => {
                           edit={false}
                           activeColor="#ffd700"
                         />
-                        <p className="mb-0 t-review">(2 Reviews)</p>
+                        <p className="mb-0 t-review">({singleProduct?.ratings.length} Reviews)</p>
                       </div>
                       <a className="review-btn" href="#review">Write a Review</a>
                     </div>
@@ -391,7 +392,7 @@ const SingleProduct = () => {
       <Container class1="featured-wrapper py-5 home-wrapper-2">
           <div className="row">
             <div className="col-12">
-              <h5 className="section-heading">Our Popular Products</h5>
+              <h5 className="section-heading">You may also like</h5>
             </div>
             <ProductCard data={popularProduct} />
           </div>

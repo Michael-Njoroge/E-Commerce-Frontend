@@ -10,16 +10,56 @@ import {useDispatch, useSelector} from 'react-redux'
 
 const OurStore = () => {
   const dispatch = useDispatch();
-  const productState = useSelector((state) => state.product.products);
+  const productState = useSelector((state) => state?.product?.products);
   const [grid, setGrid] = useState(4);
+  const [productBrand, setProductBrand] = useState([]);
+  const [productCategory, setProductCategory] = useState([]);
+  const [productTag, setProductTag] = useState([]);
+  const [productColor, setProductColor] = useState([]);
+
+  //filter states
+  const [category, setCategory] = useState(null);
+  const [brand, setBrand] = useState(null);
+  const [tag, setTag] = useState(null);
+  const [color, setColor] = useState(null);
+  const [minPrice, setMinPrice] = useState(null);
+  const [maxPrice, setMaxPrice] = useState(null);
+  const [sort, setSort] = useState(null);
+
 
   const getAllProducts = () => {
-    dispatch(getProducts());
+    dispatch(getProducts({category,brand,color,minPrice,maxPrice,sort,tag}));
   };
 
   useEffect(() => {
     getAllProducts()
-  }, []);
+  }, [category,brand,color,minPrice,maxPrice,sort,tag]);
+
+  useEffect(() => {
+    const newBrand = [];
+    const newCategory = [];
+    const newTag = [];
+    const newColor = [];
+
+    for (var i = 0; i < productState.length; i++) {
+      const element = productState[i]
+      newBrand.push(element?.brand?.title)
+      newCategory.push(element?.category?.title)
+      newTag.push(element?.tags)
+
+      const allColors = element?.colors
+
+      for (var k = 0; k < allColors.length; k++) {
+        const colored = allColors[k]
+        newColor.push(colored)
+
+      }
+    }
+    setProductBrand(newBrand);
+    setProductCategory(newCategory);
+    setProductTag(newTag);
+    setProductColor(newColor);
+  },[productState]);
 
   return (
     <>
@@ -33,10 +73,28 @@ const OurStore = () => {
 
                 <div>
                   <ul className="ps-0">
-                    <li>Watch</li>
-                    <li>Tv</li>
-                    <li>Camera</li>
-                    <li>Laptop</li>
+                  {
+                    productCategory && [...new Set(productCategory)].map((item,index)=>{
+                      return (
+                        <li key={index} onClick={()=>{setCategory(item)}}>{item}</li>
+                      )
+                    })
+                  }
+                  </ul>
+                </div>
+              </div>
+              <div className="filter-card mb-3">
+                <h3 className="filter-title">Shop By Brands</h3>
+
+                <div>
+                  <ul className="ps-0">
+                  {
+                    productBrand && [...new Set(productBrand)].map((item,index)=>{
+                      return (
+                        <li key={index} onClick={()=>{setBrand(item)}}>{item}</li>
+                      )
+                    })
+                  }
                   </ul>
                 </div>
               </div>
@@ -72,28 +130,43 @@ const OurStore = () => {
                   <div className="d-flex align-items-center gap-10">
                     <div className="form-floating">
                       <input
-                        type="email"
+                        type="number"
                         className="form-control"
                         id="floatingInput"
                         placeholder="From"
+                        onChange={(e)=>{setMinPrice(e.target.value)}}
                       />
                       <label htmlFor="floatingInput">From</label>
                     </div>
                     <div className="form-floating">
                       <input
-                        type="email"
+                        type="number"
                         className="form-control"
                         id="floatingInput1"
                         placeholder="To"
+                        onChange={(e)=>{setMaxPrice(e.target.value)}}
                       />
                       <label htmlFor="floatingInput1">To</label>
                     </div>
                   </div>
                   <h5 className="sub-title">Colors</h5>
                   <div>
-                    <Colors />
+                    <ul className="ps-0 colors">
+                    {
+                        console.log("[...new Set(item?.title)]",[...new Set(productColor)])
+
+                    }
+                    {
+                      productColor && productColor.map((item,index)=>{
+
+                        return (
+                          <li key={index} onClick={()=>{setColor(item?.id)}} style={{backgroundColor:[...new Set(item?.title)]}}></li>
+                        )
+                      })
+                    }
+                    </ul>
                   </div>
-                  <h5 className="sub-title">Size</h5>
+        {/*          <h5 className="sub-title">Size</h5>
                   <div>
                     <div className="form-check">
                       <input
@@ -117,34 +190,22 @@ const OurStore = () => {
                         M (2)
                       </label>
                     </div>
-                  </div>
+                  </div>*/}
                 </div>
               </div>
               <div className="filter-card mb-3">
                 <h3 className="filter-title">Product Tags</h3>
                 <div>
                   <div className="product-tags d-flex flex-wrap align-items-center gap-10">
-                    <span className="badge bg-light text-secondary rounded-3 py-2 px-3">
-                      HeadPhone
-                    </span>
-                    <span className="badge bg-light text-secondary rounded-3 py-2 px-3">
-                      Laptop
-                    </span>
-                    <span className="badge bg-light text-secondary rounded-3 py-2 px-3">
-                      Mobile
-                    </span>
-                    <span className="badge bg-light text-secondary rounded-3 py-2 px-3">
-                      Wire
-                    </span>
-                    <span className="badge bg-light text-secondary rounded-3 py-2 px-3">
-                      Tablet
-                    </span>
-                    <span className="badge bg-light text-secondary rounded-3 py-2 px-3">
-                      Speaker
-                    </span>
-                    <span className="badge bg-light text-secondary rounded-3 py-2 px-3">
-                      Oppo
-                    </span>
+                  {
+                    productTag && [...new Set(productTag)].map((item,index)=>{
+                      return (
+                        <span key={index} onClick={()=>setTag(item)} style={{cursor:"pointer"}} className="badge bg-light text-secondary rounded-3 py-2 px-3">
+                          {item}
+                        </span>
+                      )
+                    })
+                  }
                   </div>
                 </div>
               </div>
@@ -205,9 +266,9 @@ const OurStore = () => {
                     <p className="mb-0" style={{ width: "100px" }}>
                       Sort By:
                     </p>
-                    <select name="" className="form-control form-select" id="">
+                    <select name="" className="form-control form-select" id="" onChange={(e)=>{setSort(e.target.value)}}>
                       <option value="manual">Featured</option>
-                      <option value="best-selling">
+                      <option selected value="best-selling">
                         Best Selling
                       </option>
                       <option value="title-ascending">
@@ -222,10 +283,10 @@ const OurStore = () => {
                       <option value="price-descending">
                         Price, high to low
                       </option>
-                      <option value="created-ascending">
+                      <option value="created_at">
                         Date, old to new
                       </option>
-                      <option value="created-descending">
+                      <option value="-created_at">
                         Date, new to old
                       </option>
                     </select>

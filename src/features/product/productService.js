@@ -1,7 +1,8 @@
 import api from '../../utils/axiosInstance';
 
-const getProducts = async() => {
-	const response = await api.get('products');
+const getProducts = async(data) => {
+	console.log("data",data)
+	const response = await api.get(`products?${data?.brand ? `brand=${data?.brand}&&` : ""}${data?.category ? `category=${data?.category}&&` : ""}${data?.tag ? `tag=${data?.tag}&&` : ""}${data?.sort ? `sort=${data?.sort}&&` : ""}${data?.color ? `color=${data?.color}&&` : ""}${data?.minPrice ? `minPrice=${data?.minPrice}&&` : ""}${data?.maxPrice ? `maxPrice=${data?.maxPrice}` : ""}`);
 	return response.data.data;
 }
 

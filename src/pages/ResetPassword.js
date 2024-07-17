@@ -111,7 +111,7 @@ const ResetPassword = () => {
                   </div>
                   <div>
                     <div className="mt-1 d-flex justify-content-center gap-15 align-items-center">
-                      <button className="button border-0">
+                      <button className="button border-0" disabled={loading}>
                           {loading ? (
                               <div className="d-flex gap-1">
                                 <div className="spinner-border spinner-border-sm" role="status">
