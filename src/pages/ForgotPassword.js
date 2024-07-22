@@ -79,8 +79,9 @@ const ForgotPassword = () => {
                     <div>{formik.errors.email}</div>
                     ) : null}
                   </div>
-                    <div className="mt-3 d-flex justify-content-center gap-15 align-items-center">
-                      <button className="button border-0" type="submit" disabled={loading}>
+                    <div className="d-flex" >
+                      <Link className="button text-white bg-danger border-0 w-50 d-flex justify-content-center" style={{borderRadius:"5px"}} to="/login" hidden={loading}>Cancel</Link>
+                      <button className="button border-0 w-50 ms-2" style={{borderRadius:"5px"}} type="submit" disabled={loading}>
                         {loading ? (
                           <div className="d-flex gap-1">
                             <div className="spinner-border spinner-border-sm" role="status">
@@ -92,7 +93,6 @@ const ForgotPassword = () => {
                          'Submit'
                         }
                       </button>
-                      <Link className="button text-white bg-danger border-0" to="/login" hidden={loading}>Cancel</Link>
                     </div>
                 </form>
               </div>

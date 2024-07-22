@@ -4,7 +4,7 @@ import Meta from "../components/Meta";
 import Container from "../components/Container";
 import CustomInput from "../components/CustomInput";
 import {useDispatch, useSelector} from 'react-redux'
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { register, reset } from '../features/auth/authSlice';
@@ -22,6 +22,13 @@ const Signup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const error = useSelector((state) => state?.auth?.message);
+
+  const formatErrorMessage = (message) => {
+    if (!message) return '';
+    // Replace newlines with <br> tags
+    return message.replace(/\n/g, '<br/>');
+  };
 
 
   const formik = useFormik({
@@ -44,7 +51,7 @@ const Signup = () => {
             } catch (error) {
               setTimeout(() => {
                 dispatch(reset());
-              }, 5000);
+              }, 10000);
               console.warning("Error register:", error);
             } finally {
               setLoading(false);
@@ -56,8 +63,8 @@ const Signup = () => {
   const {user,isError,isLoading,isSuccess} = useSelector((state)=>state.auth)
 
     useEffect(() => {
-        if (!user == null || isSuccess) {
-            navigate("/")
+        if (user !== null && isError === false) {
+            navigate("/login")
         }else{
             navigate("")
         }
@@ -73,6 +80,12 @@ const Signup = () => {
             <div className="col-12">
               <div className="auth-card">
                 <h3 className="text-center mb-3">Sign Up</h3>
+                {error && (
+                  <p
+                    className="text-danger"
+                    dangerouslySetInnerHTML={{ __html: formatErrorMessage(error) }}
+                  />
+                )}
                 <form action="" onSubmit={formik.handleSubmit} className="d-flex flex-column gap-15">
                  <CustomInput 
                   type="text" 
@@ -144,10 +157,10 @@ const Signup = () => {
                   ) : null}
                 </div>
                   <div>
-                    <div className="mt-3 d-flex justify-content-center gap-15 align-items-center">
-                      <button className="button border-0">
+                    <div className="mt-2 d-flex flex-column">
+                      <button className="button border-0 w-100 d-flex justify-content-center" style={{borderRadius:"5px",fontWeight:"bolder"}}>
                        {loading ? (
-                          <div className="d-flex gap-1">
+                          <div className="d-flex gap-1 ">
                             <div className="spinner-border spinner-border-sm" role="status">
                               <span className="visually-hidden">Loading...</span>
                             </div>
@@ -158,6 +171,7 @@ const Signup = () => {
                         }
                         
                       </button>
+                      <span className="fs-6">Already have an account?<Link to="/login" className="ms-1 mt-3 underline-on-hover" style={{fontWeight:"bolder"}}>Login</Link></span>
                     </div>
                   </div>
                 </form>

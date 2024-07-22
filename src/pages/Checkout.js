@@ -8,7 +8,6 @@ import { useFormik } from 'formik';
 // import { toast } from 'react-toastify';
 import api from '../utils/axiosInstance';
 import * as Yup from 'yup';
-import {loadStripe} from '@stripe/stripe-js';
 
 const shippingValidationSchema = Yup.object({
     firstname: Yup.string().required('Firstname is required'),
@@ -28,7 +27,8 @@ const Checkout = () => {
   const cartState = useSelector((state) => state?.product?.userCart);
    const [loading, setLoading] = useState(false);
    const [showAlert, setShowAlert] = useState(false);
-   const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+   const [showModal, setShowModal] = useState(false);
+  const [transactionId, setTransactionId] = useState('');
 
   const shippingFormik = useFormik({
     initialValues: {
@@ -43,10 +43,9 @@ const Checkout = () => {
     },
       validationSchema: shippingValidationSchema,
     onSubmit: async (values) => {
-      // alert(JSON.stringify(values))
       setLoading(true);
       try {
-        const response = await api.post('/create-checkout-session', {
+        await api.post('/create-checkout-session', {
           shipping_info: {
             firstname: values.firstname,
             lastname: values.lastname,
@@ -58,10 +57,8 @@ const Checkout = () => {
           },
           shipping_amount: values.shipping_amount
         });
-
-        const session = response.data;
-        const stripe = await stripePromise;
-        await stripe.redirectToCheckout({ sessionId: session.id });
+         setShowModal(true);
+        
       } catch (error) {
         console.error("Error creating checkout session:", error);
       } finally {
@@ -69,6 +66,26 @@ const Checkout = () => {
       }
     },
     });
+
+  const handleTransactionSubmit = async () => {
+    console.log("transactionId",transactionId);
+    //  setLoading(true);
+    // try {
+    //   const response = await api.post('/verify-payment', { transaction_id: transactionId });
+    //   if (response.data.status === 'success') {
+    //     console.log('Payment verified successfully');
+    //     // Redirect or show success message
+    //   } else {
+    //     console.error('Invalid transaction ID');
+    //     // Show error message
+    //   }
+    // } catch (error) {
+    //   console.error("Error verifying payment:", error);
+    // } finally {
+    //   setLoading(false);
+    //   setShowModal(false);
+    // }
+  };
 
   const discountFormik = useFormik({
     initialValues: {
@@ -335,6 +352,7 @@ const Checkout = () => {
                       Apply
                   </button>
                 </form>
+
                <div className="border-top mt-4 py-2">
                   <div className="d-flex justify-content-between align-items-center">
                   <p className="total">Subtotal</p>
@@ -352,7 +370,43 @@ const Checkout = () => {
                </div>
             </div>
           </div>
+          
       </Container>
+       {showModal && (
+      <div 
+         className="modal fade show blur" 
+         style={{ display: 'block' }}
+      >
+        <div className="modal-dialog mt-3">
+          <div className="modal-content">
+            <div className="modal-header  border-0">
+              <button
+                type="button"
+                className="btn-close"
+                onClick={() => setShowModal(false)} 
+                aria-label="Close"
+              ></button>
+            </div>
+            <p className="text-center">Please complete the payment on your mobile device.</p>
+            <div className="modal-body  ">
+            <input 
+              type="text" 
+              className="form-control"
+              placeholder="Enter Transaction ID (eg. SGJ250MTU2)" 
+              value={transactionId}
+              required
+              onChange={(e) => setTransactionId(e.target.value)}
+            />
+            </div>
+            <div className="modal-footer border-0 justify-content-center gap-30">
+              <button className="button border-0 w-100" onClick={handleTransactionSubmit} disabled={loading}>
+              {loading ? 'Verifying...' : 'Verify Payment'}
+            </button>
+            </div>
+          </div>      
+        </div>        
+      </div>
+      )}
     </>
   );
 };

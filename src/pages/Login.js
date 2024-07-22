@@ -38,7 +38,7 @@ const Login = () => {
             } catch (error) {
               setTimeout(() => {
                 dispatch(reset());
-              }, 5000);
+              }, 10000);
               console.warning("Error login:", error);
             } finally {
               setLoading(false);
@@ -49,7 +49,7 @@ const Login = () => {
   const {user,isError,isLoading,isSuccess} = useSelector((state)=>state.auth)
 
     useEffect(() => {
-        if (!user == null || isSuccess) {
+        if (user !== null && isError === false) {
             navigate("/")
         }else{
             navigate("")
@@ -101,9 +101,8 @@ const Login = () => {
                     ) : null}
                   </div>
                   <div>
-                    <Link to="/forgot-password">Forgot Password?</Link>
-                    <div className="mt-3 d-flex justify-content-center gap-15 align-items-center">
-                      <button className="button border-0" type="submit">
+                    <div className="">
+                      <button className="button border-0 w-100 d-flex justify-content-center" style={{borderRadius:"5px",fontWeight:"bolder"}} type="submit">
                         {loading ? (
                               <div className="d-flex gap-1">
                                 <div className="spinner-border spinner-border-sm" role="status">
@@ -115,9 +114,10 @@ const Login = () => {
                              'Login'
                         }
                       </button>
-                      <Link className="signup button" hidden={loading} to="/signup">
-                        Signup
-                      </Link>
+                    </div>
+                    <div className="d-flex mt-3 justify-content-between">
+                    <span className="fs-6">Don't have an account?<Link to="/signup" className="ms-1 underline-on-hover" style={{fontWeight:"bolder"}}>Sign up</Link></span>
+                      <Link to="/forgot-password" className="underline-on-hover" style={{fontWeight:"bolder"}}>Forgot Password?</Link>
                     </div>
                   </div>
                 </form>

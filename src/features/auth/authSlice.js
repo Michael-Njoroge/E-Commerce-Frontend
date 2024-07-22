@@ -128,10 +128,28 @@ export const authSlice = createSlice({
         state.isError = true;
         state.isSuccess = false;
         state.message = action.error;
-        if(state.isSuccess === true){
-           toast.error(action.error);
+
+        if (state.isError) {
+          const errors = action.payload.response.data.errors;
+          let errorMessage = '';
+
+          // Function to accumulate messages
+          const accumulateMessages = (messages) => {
+            let accumulatedMessage = '';
+            messages.forEach((msg) => {
+              accumulatedMessage += `${msg}\n`;
+            });
+            return accumulatedMessage;
+          };
+
+          for (const [, messages] of Object.entries(errors)) {
+            errorMessage += accumulateMessages(messages);
+          }
+
+          state.message = errorMessage.trim();
         }
       })
+
       .addCase(login.pending, (state) => {
         state.isLoading = true
       })
@@ -140,10 +158,7 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.user = action.payload;
         if(state.isSuccess === true){
-       <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+          toast.success("Welcome back");
         }
       })
       .addCase(login.rejected, (state, action) => {
@@ -151,8 +166,8 @@ export const authSlice = createSlice({
         state.isError = true;
         state.isSuccess = false;
         state.user =  null;
-        if (state.isSuccess === false) {
-          state.message = "Invalid Credentials, please try again";
+        if (state.isError === true) {
+          state.message = action.payload.response.data.message;
         }
       })
       .addCase(getWishlist.pending, (state) => {
@@ -241,10 +256,20 @@ export const authSlice = createSlice({
       .addCase(updateProfile.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.user = action.payload;
-        if (state.isSuccess === true) {
-          toast.success("Profile updated successfully");
+        state.updatedUser = action.payload;
+
+        const currentUserData = JSON.parse(localStorage.getItem("customer"));
+        const newUserData = {
+          id: currentUserData?.id,
+          token: currentUserData?.token,
+          firstname: action?.payload?.firstname,
+          lastname: action?.payload?.lastname,
+          email: action?.payload?.email,
+          mobile: action?.payload?.mobile,
         }
+        localStorage.setItem("customer", JSON.stringify(newUserData))
+        state.user = action.payload;
+        toast.success("Profile updated successfully");
       })
       .addCase(updateProfile.rejected, (state, action) => {
         state.isLoading = false;
