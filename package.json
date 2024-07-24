@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
+    "@splidejs/react-splide": "^0.7.12",
+    "@splidejs/splide": "^4.1.4",
+    "@splidejs/splide-extension-auto-scroll": "^0.5.3",
     "@stripe/react-stripe-js": "^2.7.3",
     "@stripe/stripe-js": "^4.1.0",
     "@testing-library/jest-dom": "^5.17.0",

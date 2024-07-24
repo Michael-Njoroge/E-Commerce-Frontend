@@ -26,7 +26,6 @@ const Signup = () => {
 
   const formatErrorMessage = (message) => {
     if (!message) return '';
-    // Replace newlines with <br> tags
     return message.replace(/\n/g, '<br/>');
   };
 
@@ -158,7 +157,7 @@ const Signup = () => {
                 </div>
                   <div>
                     <div className="mt-2 d-flex flex-column">
-                      <button className="button border-0 w-100 d-flex justify-content-center" style={{borderRadius:"5px",fontWeight:"bolder"}}>
+                      <button className="button border-0 w-100 d-flex justify-content-center" disabled={loading} style={{borderRadius:"5px",fontWeight:"bolder"}}>
                        {loading ? (
                           <div className="d-flex gap-1 ">
                             <div className="spinner-border spinner-border-sm" role="status">

@@ -7,10 +7,20 @@ import SpecialProducts from "../components/SpecialProducts";
 import ProductCard from "../components/ProductCard";
 import Container from "../components/Container";
 import Meta from "../components/Meta";
-import {services} from "../utils/Data.js"
+import {services, categories, marque} from "../utils/Data.js"
 import {useDispatch, useSelector} from 'react-redux'
 import { getProducts } from '../features/product/productSlice';
 import { getBlogs } from '../features/blog/blogSlice';
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/react-splide/css";
+import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
+import speaker1 from "../images/speaker1.jpg";
+import tv from "../images/tv.jpg";
+import watch4 from "../images/watch4.jpg";
+import gaming from "../images/gaming.jpg";
+import accessory from "../images/laptop.jpg";
+import tab10 from "../images/tab10.jpg";
+
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -36,6 +46,22 @@ const Home = () => {
     <Container class1='home-wrapper-1 py-5'>
        <div className="row">
             <div className="col-6">
+             <Splide
+              options={{
+              type: 'loop', 
+              perPage: 1,
+              autoplay: true ,
+              interval: 6000,
+              arrows: false,
+              pagination: true,
+              width: '100%',
+              height: 'auto',
+              cover: true, 
+              speed: 600, 
+              pauseOnHover: false,
+              }}
+            >
+            <SplideSlide>
               <div className="main-banner position-relative">
                 <img
                   src="images/main-banner-1.jpg"
@@ -49,10 +75,27 @@ const Home = () => {
                   <Link className="button">BUY NOW</Link>
                 </div>
               </div>
+              </SplideSlide>
+              <SplideSlide>
+              <div className="main-banner position-relative">
+                <img
+                  src="images/main-banner.jpg"
+                  alt="main-banner"
+                  className="img-fluid rounded-3"
+                />
+                <div className="main-banner-content position-absolute">
+                  <h4>SUPERCHARGED FOR PROS</h4>
+                  <h5>Special Sale</h5>
+                  <p>From $999.00 or $47.62/mo</p>
+                  <Link className="button">BUY NOW</Link>
+                </div>
+              </div>
+              </SplideSlide>
+              </Splide>
             </div>
             <div className="col-6">
-              <div className="d-flex gap-10 flex-wrap justify-content-between align-items-center">
-                <div className="small-banner position-relative">
+              <div className="d-flex gap-10 flex-wrap justify-content-between align-items-center" style={{cursor:"pointer"}}>
+                <div className="small-banner position-relative" >
                   <img
                     src="images/catbanner-01.jpg"
                     alt="small-banner"
@@ -60,9 +103,9 @@ const Home = () => {
                   />
                   <div className="small-banner-content position-absolute">
                     <h4>BEST SAKE</h4>
-                    <h5>iPad s13+ Pro</h5>
+                    <h5>Laptop Max</h5>
                     <p>
-                      From $999.00 <br /> or $47.62/mo
+                      From $1699.00 or<br /> $64.62/mo
                     </p>
                   </div>
                 </div>
@@ -76,7 +119,7 @@ const Home = () => {
                     <h4>NEW ARRIVAL</h4>
                     <h5>Buy iPad Air</h5>
                     <p>
-                      From $999.00 <br /> or $47.62/mo
+                      From $599.00 or $47.62/<br />mo.for 12 mo. *
                     </p>
                   </div>
                 </div>
@@ -87,10 +130,10 @@ const Home = () => {
                     className="img-fluid rounded-3"
                   />
                   <div className="small-banner-content position-absolute">
-                    <h4>BEST SAKE</h4>
-                    <h5>iPad s13+ Pro</h5>
+                    <h4>15% off</h4>
+                    <h5>Smart Watch 7</h5>
                     <p>
-                      From $999.00 <br /> or $47.62/mo
+                      Shop the latest band <br/> style and colors
                     </p>
                   </div>
                 </div>
@@ -101,10 +144,10 @@ const Home = () => {
                     className="img-fluid rounded-3"
                   />
                   <div className="small-banner-content position-absolute">
-                    <h4>BEST SAKE</h4>
-                    <h5>iPad s13+ Pro</h5>
+                    <h4>free engraving</h4>
+                    <h5>Airpods Max</h5>
                     <p>
-                      From $999.00 <br /> or $47.62/mo
+                      High-fidelity playback &<br /> utra-low distortion
                     </p>
                   </div>
                 </div>
@@ -137,63 +180,16 @@ const Home = () => {
       <Container class1="home-wrapper-2 py-5">
         <div className="row">
             <div className="col-12">
-              <div className="categories flex-wrap d-flex align-items-center align-items-center justify-content-between">
-                <div className="d-flex align-items-center">
-                  <div>
-                    <h6>Cameras</h6>
-                    <p>10 Items</p>
-                  </div>
-                  <img src="images/camera.jpg" alt="camera" />
-                </div>
-                <div className="d-flex align-items-center">
-                  <div>
-                    <h6>Smart Tv</h6>
-                    <p>22 Items</p>
-                  </div>
-                  <img src="images/tv.jpg" alt="camera" />
-                </div>
-                <div className="d-flex align-items-center">
-                  <div>
-                    <h6>Head Phones</h6>
-                    <p>8 Items</p>
-                  </div>
-                  <img src="images/headphone.jpg" alt="camera" />
-                </div>
-                <div className="d-flex align-items-center">
-                  <div>
-                    <h6>Music & Gaming</h6>
-                    <p>10 Items</p>
-                  </div>
-                  <img src="images/camera.jpg" alt="camera" />
-                </div>
-                <div className="d-flex align-items-center">
-                  <div>
-                    <h6>Cameras</h6>
-                    <p>10 Items</p>
-                  </div>
-                  <img src="images/camera.jpg" alt="camera" />
-                </div>
-                <div className="d-flex align-items-center">
-                  <div>
-                    <h6>Smart Tv</h6>
-                    <p>22 Items</p>
-                  </div>
-                  <img src="images/tv.jpg" alt="camera" />
-                </div>
-                <div className="d-flex align-items-center">
-                  <div>
-                    <h6>Head Phones</h6>
-                    <p>8 Items</p>
-                  </div>
-                  <img src="images/headphone.jpg" alt="camera" />
-                </div>
-                <div className="d-flex align-items-center">
-                  <div>
-                    <h6>Music & Gaming</h6>
-                    <p>10 Items</p>
-                  </div>
-                  <img src="images/camera.jpg" alt="camera" />
-                </div>
+              <div className="categories flex-wrap d-flex align-items-center align-items-center justify-content-between" style={{cursor:"pointer"}}>
+                {categories.map((item, index) => (
+                    <div key={index} className="d-flex align-items-center">
+                      <div>
+                        <h6>{item.title}</h6>
+                        <p>{item.count} Items</p>
+                      </div>
+                      <img src={item.img} alt={item.title} />
+                    </div>
+                ))}
               </div>
             </div>
           </div>
@@ -316,30 +312,11 @@ const Home = () => {
             <div className="col-12">
               <div className="marque-inner-wrapper card-wrapper">
                 <Marquee className="d-flex">
-                  <div className="mx-4 w-25">
-                    <img src="images/brand-01.png" alt="brand" />
+                {marque.map((item,index) => (
+                  <div key={index} className="mx-4 w-25">
+                    <img src={item?.img} alt="brand" />
                   </div>
-                  <div className="mx-4 w-25">
-                    <img src="images/brand-02.png" alt="brand" />
-                  </div>
-                  <div className="mx-4 w-25">
-                    <img src="images/brand-03.png" alt="brand" />
-                  </div>
-                  <div className="mx-4 w-25">
-                    <img src="images/brand-04.png" alt="brand" />
-                  </div>
-                  <div className="mx-4 w-25">
-                    <img src="images/brand-05.png" alt="brand" />
-                  </div>
-                  <div className="mx-4 w-25">
-                    <img src="images/brand-06.png" alt="brand" />
-                  </div>
-                  <div className="mx-4 w-25">
-                    <img src="images/brand-07.png" alt="brand" />
-                  </div>
-                  <div className="mx-4 w-25">
-                    <img src="images/brand-08.png" alt="brand" />
-                  </div>
+                ))}
                 </Marquee>
               </div>
             </div>

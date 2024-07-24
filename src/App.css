@@ -91,6 +91,11 @@ a {
 .header-upper .header-upper-links img {
   height: 35px;
   width: 35px;
+   transition: transform 0.5s ease;
+}
+
+.header-upper .header-upper-links .d-flex:hover img{
+  transform: rotateY(360deg);
 }
 
 .header-bottom {
@@ -180,14 +185,29 @@ footer .input-group-text {
 }
 
 .small-banner-content {
-  top: 25%;
-  left: 10%;
+  top: 19%;
+  left: 9%;
+}
+
+.small-banner{
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.small-banner img {
+  transition: transform 0.3s ease; /* Smooth transition */
+  display: block; /* Ensure the image behaves as a block element */
+  width: 100%; /* Ensure the image covers the container */
+}
+
+.small-banner:hover img {
+  transform: scale(1.05); /* Zoom effect */
 }
 
 .small-banner-content h4 {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 16px;
   color: var(--color-bf4800);
   margin: 0 0 12px;
   letter-spacing: 0.3px;
@@ -227,6 +247,11 @@ footer .input-group-text {
   padding: 15px;
 }
 
+.categories .d-flex:hover h6 {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .categories > div > div {
   width: 60%;
 }
@@ -234,6 +259,7 @@ footer .input-group-text {
 .categories > div {
   width: 25%;
   padding: 10px 10px 10px 20px;
+  overflow: hidden;
 }
 
 .categories > div:nth-child(1),
@@ -251,9 +277,23 @@ footer .input-group-text {
 
 .categories > div:nth-child(5),
 .categories > div:nth-child(6),
-.categories > div:nth-child(7) {
+.categories > div:nth-child(7){
   border-right: 1px solid var(--color-ededed);
 }
+
+.services{
+  cursor: pointer;
+}
+
+.services .d-flex img {
+  transition: transform 0.7s ease;
+  display: block;
+}
+
+.services .d-flex:hover img {
+  transform: rotateY(360deg);
+}
+
 /*categories end*/
 
 /*Blog Part*/
@@ -857,4 +897,51 @@ footer .input-group-text {
 .underline-on-hover:hover{
    text-decoration: underline;
 }
+.currency option{
+  background-color: red;
+}
+.dropdown .currency::-ms-expand {
+  display: none;
+}
 /*Shipping page End*/
+
+
+
+
+/*/////////////////////////////////// CSS for small screens ////////////////////////////////////////*/
+ 
+@media (max-width: 767.98px) {
+  .header-top-strip .col-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .header-upper .col-2, 
+  .header-upper .col-5 {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .header-upper .header-upper-links > div {
+    margin-bottom: 1rem;
+  }
+
+  .header-bottom .menu-links {
+    display: none;
+  }
+
+  .header-bottom .input-group {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .header-upper .col-2 {
+    text-align: left;
+  }
+
+  .header-upper .col-5 {
+    text-align: right;
+  }
+}
+
